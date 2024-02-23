@@ -1,0 +1,177 @@
+,sku,nombre_del_producto,marca,categoria,subcategoria,precio_de_lista,mas_bajo,mas_alto,precio_mercado
+0,12449268,CAT CHOW Adt Delicias Sab Carne  1 kg,cat chow,gato,,6190,6120,6120,6120
+1,12449267,CAT CHOW Adt Delicias Sab Carne  3 kg,cat chow,gato,,15990,81,17990,12120
+2,12442671,CAT CHOW ADULTOS Hogareños  1 kg,cat chow,gato,,6190,6120,6120,6120
+3,12442300,CAT CHOW ADULTOS Hogareños  3 kg,cat chow,gato,,15990,14500,17990,16245
+4,12442655,CAT CHOW ADULTOS Hogareños  8 kg,cat chow,gato,seco,29490,26550,35990,30110
+5,12449306,CAT CHOW Adultos Pescado  1 kg,cat chow,gato,,6190,5940,5940,5940
+6,12449320,CAT CHOW Adultos Pescado  3 kg,cat chow,gato,,15990,81,17990,11920
+7,12449292,CAT CHOW Adultos Pescado  8 kg,cat chow,gato,seco,29490,25070,35990,29771
+8,12449109,CAT CHOW DELIMIX  1kg,cat chow,gato,,6190,5490,6600,6045
+9,12449264,CAT CHOW DELIMIX  3kg,cat chow,gato,,15990,11610,17990,15003
+10,12449123,CAT CHOW Esterilizado DefensePlus  1 kg,cat chow,gato,,6190,6120,6120,6120
+11,12449113,CAT CHOW Esterilizado DefensePlus  3 kg,cat chow,gato,,15990,15210,18990,16485
+12,12442303,CAT CHOW Esterilizado DefensePlus  8 kg,cat chow,gato,seco,29490,26320,34990,28550
+13,12449310,CAT CHOW Gatitos  3 kg,cat chow,gato,,16990,81,19990,13105
+14,12500993,DOG CHOW Adt M/G Car&Pll SinCol   8kg,dog chow,perro,seco,24990,19900,26990,23070
+15,12381386,DOG CHOW Adt M/G Car&Pll SinCol  18kg,dog chow,perro,seco,48790,40990,53990,44702
+16,12500997,DOG CHOW AdtMnPqn Car&Pll SinCol  8 kg,dog chow,perro,seco,28490,24220,34990,27714
+17,12471502,DOG CHOW Adulto 7+ Longevidad  15kg,dog chow,perro,,38490,27810,30990,29830
+18,12471499,DOG CHOW Adulto 7+ Longevidad  18kg,dog chow,perro,seco,48790,21000,48150,39533
+19,12471500,DOG CHOW Adulto 7+ Longevidad  3kg,dog chow,perro,,11890,9500,12060,10780
+20,12471501,DOG CHOW Adulto 7+ Longevidad  8kg,dog chow,perro,seco,24990,21250,26991,23564
+21,12460993,DOG CHOW Adulto Medianos y Grandes Pll&Pav 3kg,dog chow,perro,,11890,22000,22000,22000
+22,12461010,DOG CHOW Adulto Minis y Pequeños Pll&Pav  3 kg,dog chow,perro,,12990,11600,11600,11600
+23,12461001,DOG CHOW Adulto Minis y Pequeños Pll&Pav  8 kg,dog chow,perro,seco,28490,25200,34990,28812
+24,12461139,"DOG CHOW Cachorro Minis y Pequeños  1,5kg",dog chow,perro,,8990,7600,7600,7600
+25,12471514,DOG CHOW Cachrorro Raza Mediana y Grande 18kg,dog chow,perro,seco,53490,44990,58990,49373
+26,12460618,DOG CHOW Cachrorro Raza Mediana y Grande 3kg,dog chow,perro,,12990,12420,12420,12420
+27,12471512,DOG CHOW Control de Peso  15kg,dog chow,perro,,38490,27645,27645,27645
+28,12471510,DOG CHOW Control de Peso  3kg,dog chow,perro,,11890,10190,12060,11125
+29,12471511,DOG CHOW Control de Peso  8kg,dog chow,perro,seco,24990,21150,30990,24706
+30,12434293,DOG CHOW Galletas PolloMedGde   500gr,dog chow,perro,,4690,4190,5590,4932
+31,12479465,Dog Chow Galletas Sabor Pollo- CACH Todos Los Tamaños  2 kg,dog chow,perro,,17490,17490,17490,17490
+32,12434258,DOGCHOW GalletasPolloMiniPeq   500gr,dog chow,perro,,4690,4230,5490,4725
+33,12434287,DOGCHOWGalletasPllyLecCchrTdTm  300gr,dog chow,perro,,3550,2691,4690,3420
+34,12418654,DogChowSaudeOralAdltMinisPeq20X45gXI  45gr,dog chow,perro,,1190,1590,1590,1590
+35,12418618,DogChowXLifeSaudeOralAdltMedGde20X80gXI  80 gr,dog chow,perro,,1190,1490,1490,1490
+36,12311118,Doguitos Medallones de Carne (RP)  65gr,doguitos,perro,,1520,1200,1700,1450
+37,12375748,DOGUITOS Tira Asado 15x65g N1 XI  65gr,doguitos,perro,,1520,1300,1700,1519
+38,12484571,DOKO Adt Carne&Cereales 18kg N1 CL  18 kg,doko,perro,seco,33290,26990,32990,29207
+39,12463654,DOKO Cchr Carne&Leche  18kg,doko,perro,seco,36530,29990,36900,33010
+40,12434464,FELIX CLASSIC con Atún15x85gXI  85 gr,felix,gato,,860,621,1190,859
+41,12434456,FELIX CLASSIC con Carne15x85gXI  85 gr,felix,gato,,860,699,1190,874
+42,12434380,FELIX CLASSIC con Pavo15x85gXI  85 gr,felix,gato,,860,500,891,759
+43,12434296,FELIX CLASSIC con Pescado Blanco15x85gXI  85 gr,felix,gato,,860,699,1190,912
+44,12434373,FELIX CLASSIC con Pollo e Hígado15x85gXI  85 gr,felix,gato,,860,621,1190,859
+45,12434450,FELIX CLASSIC con Salmón15x85gXI  85 gr,felix,gato,,860,699,1190,840
+46,12434446,FELIX CLASSIC Gatitos con Carne15x85gXI  85 gr,felix,gato,,860,699,891,815
+47,12434457,FELIX CLASSIC Gatitos con Pesc15x85gXI  85 gr,felix,gato,,860,699,891,816
+48,12434307,FELIX CLASSIC Gatitos con Pollo15x85gXI  85 gr,felix,gato,,860,699,1190,894
+49,12448680,FELIX Fantastic Deli Atún  85 gr,felix,gato,,860,890,890,890
+50,12448665,FELIX Fantastic Tiritas Carne  85 gr,felix,gato,,860,890,890,890
+51,12448681,FELIX FantasticMix SalmónCarne  85 gr,felix,gato,,860,890,890,890
+52,12313892,FELIX TRAVESURAS Ocean Mix   60gr,felix,gato,,1520,1440,1990,1610
+53,12313891,FELIX TRAVESURAS Original Mix   60gr,felix,gato,,1520,1350,1600,1480
+54,12471418,Gatito Carne 6 Kg  6 kg,purina one,gato,seco,45490,37990,51900,42896
+55,12465849,ONE Adulto Med Grande Carne 12kg AR,purina one,perro,seco,49990,40990,50850,45284
+56,12465588,ONE Adulto Med Grande Carne 6kg AR,purina one,perro,,32890,26950,32670,29528
+57,12465860,ONE Adulto Med Grande Cordero 12kg AR,purina one,perro,seco,51990,42790,50850,46877
+58,12465850,ONE Adulto Med Grande Cordero 6kg AR,purina one,perro,,33990,26990,34650,30905
+59,12465838,ONE Adulto Med Grande Cordero 6x2kg AR,purina one,perro,,12690,9990,12500,11245
+60,12465594,ONE Adulto Mini Peq Carne 6x2kg AR  2 Kg,purina one,perro,seco,12690,8990,12060,10847
+61,12465597,ONE Adulto Mini Peq Cordero 6kg AR  6 Kg,purina one,perro,seco,33990,26990,34650,30877
+62,12465596,ONE Adulto Mini Peq Cordero 6x2kg AR  2 Kg,purina one,perro,,13290,9990,12950,11813
+63,12465589,ONE Cachorro 12kg AR  12 Kg,purina one,perro,seco,49990,40990,48870,44138
+64,12465593,ONE Cachorro 6kg AR  6 Kg,purina one,perro,,32890,26990,32220,29185
+65,12465613,ONE Cachorro 6x2kg AR  2 Kg,purina one,perro,,12690,9990,11700,11063
+66,12466110,ONE Esterilizado Salmon 6kg AR  6 kg,purina one,perro,,45490,29990,43380,39006
+67,12466089,ONE Esterilizado Salmon 6x2kg AR  2 kg,purina one,perro,,18290,14990,17990,16545
+68,12466092,ONE Gatito 6x2kg AR  2 kg,purina one,gato,seco,18290,15741,20100,17277
+69,12466084,ONE Gato Carne 6kg AR  6 kg,purina one,perro,,45490,38151,48700,43340
+70,12466083,ONE Gato Carne 6x2kg AR  2 kg,purina one,perro,,18290,14990,18090,16703
+71,12466087,ONE Gato Salmon 6kg AR  6 kg,purina one,gato,seco,45490,37990,46710,41734
+72,12466086,ONE Gato Salmon 6x2kg AR  2 kg,purina one,gato,seco,18290,14990,17460,16295
+73,12468816,ONE Gatos Adt y Estlz Super Ntr  85 gr,purina one,gato,,1250,1200,2000,1600
+74,12468803,ONE Gatos Adt y Estlz Superfoods  85 gr,purina one,gato,,1250,2000,2000,2000
+75,12468817,ONE Gatos Adt y Gtts Multi Protein  85 gr,purina one,gato,,1250,1200,2000,1600
+76,12333535,"TIDY CAT SCOOP LWT  2,72kg",tidy cats,gato,arenas,15990,12990,22390,15084
+77,12426941,"TIDY CATS 24/7 PERFORMANCE 9.07kg XI  9,07kg",tidy cats,gato,arenas,14990,11990,14240,13450
+78,12426919,"TIDY CATS 24/7PERF Cnv 4x4,54kg XI  4,54kg",tidy cats,gato,arenas,8490,6650,14580,8680
+79,12426936,"TIDY CATS INSTANT ACTION Scp 3x6.35kg XI  6,35kg",tidy cats,gato,arenas,14990,8990,20990,13255
+80,12364417,Alimento húmedo para gato PRO PLAN® Dietas Veterinarias NF Advanced Care 156g,pro plan veterinary diets,gato,húmedo,3300,3300,3990,3669
+81,12481681,Alimento húmedo para perro PROPLAN® Dietas Veterinarias NF Enfermedad Renal 368g,pro plan veterinary diets,perro,húmedo,4100,3490,8900,4611
+82,12367348,Alimento húmedo perro y gato PROPLAN® Dieta Veterinaria CN NutriciónCrítica 156g,pro plan veterinary diets,gato,húmedo,4100,3040,6990,4351
+83,12473458,Alimento húmedo terapeutico para gato PRO PLAN® Dietas Veterinarias EN Gastroentérico 156g,pro plan veterinary diets,gato,húmedo,3300,3300,4100,3658
+84,12481683,Alimento húmedo terapeutico para perro PRO PLAN® Dietas Veterinarias EN Gastroentérico 368g,pro plan veterinary diets,perro,húmedo,4100,2850,4580,4045
+85,12453104,alimento para perro pro plan active mind raza medianos y grandes en bolsa de 3kg,pro plan,gato,,29990,20190,31290,26638
+86,12453289,alimento para perro pro plan sensitive skin razas medianas y grandes en bolsa de 3kg,pro plan,perro,,29990,23990,34990,27818
+87,12329397,Alimento seco para perro EXCELLENT® Adultos Razas Medianas y Grandes 15kg,excellent,perro,seco,59990,42750,66990,50652
+88,12329396,Alimento seco para perro EXCELLENT® Cachorros Razas Medianas y Grandes 15kg,excellent,perro,seco,66490,38815,71990,50791
+89,12453293,Alimento seco para perro PRO PLAN® Adulto +7 Raza Mediana y Grande 15kg,pro plan,perro,seco,94990,63375,96990,75484
+90,12453311,Alimento seco para perro PRO PLAN® Adulto Raza Grande 15kg,pro plan,perro,seco,86990,62400,89990,69631
+91,12453312,Alimento seco para perro PRO PLAN® Adulto Rz Mediana/Grande Reduced Calorie 15kg,pro plan,perro,seco,89990,57639,92990,73446
+92,12453316,Alimento seco para perro PRO PLAN® Adulto Rz Mediana/Grande Sensitive Skin 15kg,pro plan,perro,seco,91990,59490,93990,73501
+93,12453294,Alimento seco para perro PRO PLAN® Cachorro Raza Grande 15kg,pro plan,perro,seco,89990,64290,83990,73060
+94,12483583,Alimento seco terapeutico para gato PRO PLAN® Dietas Veterinarias HA Hipoalergénico 3kg,pro plan veterinary diets,gato,seco,40500,33500,42490,37693
+95,12469315,"Alimento seco terapeutico para perro PRO PLAN® Dietas Veterinarias HA Hipoalergénico 7,5 kg",pro plan veterinary diets,perro,seco,59990,33360,59990,48498
+96,12482400,CAT CHOW Adultos Carne 85 gr,cat chow,gato,,1020,799,1290,1008
+97,12482394,CAT CHOW Adultos Pescado 85 gr,cat chow,gato,,1020,799,1290,1035
+98,12482399,CAT CHOW Adultos Pollo  85 gr,cat chow,gato,,1020,799,1290,1044
+99,12482395,CAT CHOW Esterilizados Carne 85 gr,cat chow,gato,,1020,739,1290,966
+100,12482401,CAT CHOW Esterilizados Pescado 85 gr,cat chow,gato,,1020,799,1290,965
+101,12482410,CAT CHOW Gatitos Pollo 85 gr,cat chow,gato,,1020,739,1290,980
+102,12409089,DCHOWAdltMinisYPeqc/MixDePolYPa 100 gr,dog chow,gato,,860,720,891,798
+103,12409090,DOG CHOW Adlt MinisYPeq c/Smn 100 gr,dog chow,perro,,860,720,801,770
+104,12409091,DOG CHOW AdltMinis YPeq c/Car  100 gr,dog chow,perro,,860,790,810,800
+105,12500998,DOG CHOW AdtMnPqn Car&Pll SinCol  3 kg,dog chow,perro,,12990,10350,11600,10975
+106,12409080,DOGCHOW Adlt TdTm 100 gr,dog chow,perro,,860,500,810,655
+107,12409085,DOGCHOW Adlt TdTm c/ Carne 100 gr,dog chow,perro,,860,790,1190,990
+108,12409082,DOGCHOW Adlt TdTm c/ Cord 100 gr,dog chow,perro,,860,632,1190,845
+109,12409086,DOGCHOW Adlt TdTm c/ Pavo 100 gr,dog chow,perro,,860,720,990,823
+110,12409084,DOGCHOW CachorroTdTm c/ Car 100 gr,dog chow,perro,,860,621,792,734
+111,12409081,DOGCHOW CachorroTdTm c/ Pollo 100 gr,dog chow,perro,,860,801,1190,994
+112,12381389,EXCELLENT Adt Dog Formula 15kgCL 15kg,excellent,perro,seco,49990,30990,54990,39973
+113,12452607,EXCELLENT Adt Dog Smn Skin Care 15kg,excellent,perro,seco,66490,42490,71990,52386
+114,12526301,fancy feast goulash tuna 15x85g n1 xi,fancy feast,gato,,1250,810,810,810
+115,12514101,FANCY FEAST Kiss c/ Salmon At 30x40gLAT 40 gr,fancy feast,gato,snack,2990,1710,3290,2530
+116,12514098,FANCY FEAST Kiss con Atun 30x40g LAT 40 gr,fancy feast,gato,snack,2990,1710,3290,2647
+117,12514099,FANCY FEAST Kiss con Pollo 30x40g LAT 40 gr,fancy feast,gato,snack,2990,2250,3290,2744
+118,12435252,FANCY FEAST Mousse Carne 8x85g US 85 gr,fancy feast,gato,,1350,792,7830,1875
+119,12435243,FANCY FEAST Mousse Pez Camaron 8x85g Us 85 gr,fancy feast,gato,,1350,872,7830,2405
+120,12435253,FANCY FEAST Petits Filets Atun 8x85g US 85 gr,fancy feast,gato,,1350,792,7830,3324
+121,12435241,FANCY FEAST Petits Filets Salmon 8x85gUS 85 gr,fancy feast,gato,,1350,872,7830,2707
+122,12435251,FANCY FEAST Tartare Atun 8x85g US 85 gr,fancy feast,gato,,1350,872,7830,2570
+123,12435227,FANCY FEAST Tartare Trucha 8x85g US 85 gr,fancy feast,gato,,1350,872,7830,2510
+124,12435228,FANCY FEAST Terrine Pavo 8x85g US 85 gr,fancy feast,gato,,1350,872,7830,3331
+125,12435229,FANCY FEAST Terrine Pollo 8x85g US 85 gr,fancy feast,gato,,1350,792,7830,1839
+126,12468794,ONE Perros Adt  y Cchr Multi Protein 100 gr,purina one,perro,,1250,1200,2030,1615
+127,12468818,ONE Perros Adt Y Cchr Super Nutr 100 gr,purina one,perro,,1250,1200,2000,1600
+128,12468787,ONE Perros Adt Y Cchr Superfoods 100 gr,purina one,perro,,1250,1200,2030,1615
+129,12453123,PRO PLAN ACTIVE MIND Optiage Raza Pequeña 3kg,pro plan,perro,seco,29990,20590,34990,26940
+130,12453305,"PRO PLAN ACTIVE MIND Optiage Raza Pequeña 7,5kg",pro plan,perro,seco,64490,47300,66990,53816
+131,12458622,"PRO PLAN ADULT Cat LIVE CLEAR 1,0 kg",pro plan,gato,,16300,13510,15990,14305
+132,12458608,"PRO PLAN ADULT Cat LIVE CLEAR 3,0kg",pro plan,gato,seco,41200,27990,40980,35461
+133,12480086,PRO PLAN ADULT CAT POLLO Y ARROZ  24X85gr,pro plan,gato,húmedo,1850,590,2690,1729
+134,12340774,PRO PLAN ADULT CAT Sterilized Pollo 85 gr,pro plan,gato,húmedo,1950,1000,2200,1676
+135,12340775,PRO PLAN ADULT CAT Wet Pollo 85 gr,pro plan,gato,,1850,1133,2690,1785
+136,12340773,PRO PLAN ADULT CAT Wet Salmón 85 gr,pro plan,gato,húmedo,1850,1133,2690,1872
+137,12482113,PRO PLAN ADULT DOG POLLO Y ARROZ 12X370gr,pro plan,perro,húmedo,3490,2790,4690,3267
+138,12341820,PRO PLAN Adulto Dog Carne en Salsa 100 gr,pro plan,perro,húmedo,1900,1133,2690,1928
+139,12450605,"PRO PLAN Cat 7+ Optiage 3,0kg",pro plan,gato,seco,34100,26721,39990,30580
+140,12450068,PRO PLAN Cat ADULT Optidigest 3kg,pro plan,gato,seco,30600,24201,37990,27304
+141,12450081,"PRO PLAN Cat ADULT Optidigest 7,5kg",pro plan,gato,seco,61400,44175,63490,51493
+142,12449850,"PRO PLAN Cat KITTEN Optistart 1,0kg",pro plan,gato,,12600,10521,16990,12390
+143,12449837,"PRO PLAN Cat KITTEN Optistart 3,0 kg",pro plan,gato,seco,34100,26721,39990,30353
+144,12448695,"PRO PLAN Cat KITTEN Optistart 7,5kg",pro plan,gato,seco,64900,47241,66990,55430
+145,12450608,"PRO PLAN Cat REDUCED CALORIE Optifit 3,0kg",pro plan,gato,seco,34100,26721,39990,30434
+146,12450589,"PRO PLAN Cat STERILIZED Optirenal 3,0kg",pro plan,gato,seco,34100,26990,39990,30415
+147,12450610,"PRO PLAN Cat STERILIZED Optirenal 7,5kg",pro plan,gato,seco,64900,46875,67490,54746
+148,12450587,"PRO PLAN Cat URINARY Optitract  1,0kg",pro plan,gato,seco,12600,10570,16990,12691
+149,12450606,PRO PLAN Cat URINARY Optitract  3 kg,pro plan,gato,seco,34100,26721,39990,29635
+150,12450588,"PRO PLAN Cat URINARY Optitract  7,5kg",pro plan,gato,seco,64900,47241,67490,55644
+151,12453318,PRO PLAN Dog Adult EXIGENT Optienrich  Raza Pequeña 3kg,pro plan,perro,seco,29990,23900,34990,27920
+152,12453683,PRO PLAN Dog Adult EXIGENT Optienrich  Raza Pequeña 7.5kg,pro plan,perro,,62990,39690,70900,56526
+153,12453296,PRO PLAN Dog Adult Optihealth Raza Mediana 15kg,pro plan,perro,seco,86990,62400,89990,69259
+154,12453122,PRO PLAN Dog Adult Optihealth Raza Mediana 3kg,pro plan,perro,,26700,16990,28990,22876
+155,12452939,PRO PLAN Dog Adult Optihealth Raza Pequeña 3kg,pro plan,perro,seco,27700,22780,33990,26067
+156,12453303,"PRO PLAN Dog Adult Optihealth Raza Pequeña 7,5kg",pro plan,perro,seco,58490,42884,59990,49281
+157,12453288,PRO PLAN Dog Puppy Optistart Raza Mediana  15kg,pro plan,perro,seco,89990,55168,92990,73444
+158,12452915,PRO PLAN Dog Puppy Optistart Raza Mediana  3kg,pro plan,perro,seco,27700,23550,33990,26545
+159,12452753,PRO PLAN Dog Puppy Optistart Raza Pequeña 1kg,pro plan,perro,,10990,8990,14990,10886
+160,12453113,PRO PLAN Dog Puppy Optistart Raza Pequeña 3kg,pro plan,perro,seco,29990,23900,34990,27373
+161,12453105,PRO PLAN Dog Puppy Optistart Raza Pequeña 7.5kg,pro plan,perro,seco,62990,43900,64990,51473
+162,12476239,PRO PLAN Dog SENSITIVE SKIN & STOMACH Optidual Raza M/G 3kg,pro plan,perro,,91990,69990,91990,80046
+163,12476116,PRO PLAN Dog SENSITIVE SKIN & STOMACH Optidual Raza Pequeña 3 kg,pro plan,perro,,29990,23990,34990,27686
+164,12476228,PRO PLAN Dog SENSITIVE SKIN & STOMACH Optidual Raza Pequeña 3 kg,pro plan,perro,,59990,46990,66990,54236
+165,12453348,PRO PLAN Dog SENSITIVE SKIN Cordero Adulto 3kg,pro plan,perro,,29990,18780,34990,26235
+166,12453349,PRO PLAN Dog SENSITIVE SKIN Cordero Adulto 3kg,pro plan,perro,,93990,53900,92490,74406
+167,12453319,PRO PLAN Dog SENSITIVE SKIN Cordero Cachorro 3 kg,pro plan,perro,,31000,25990,37990,29463
+168,12467697,PRO PLAN Dog SENSITIVE SKIN Cordero Cachorro 3 kg,pro plan,perro,,97990,66400,86980,79561
+169,12453313,PRO PLAN Dog SENSITIVE SKIN Salmón Optiderma Raza Pequeña  3 kg,pro plan,perro,,29990,20890,34990,26961
+170,12480330,PRO PLAN KITTEN POLLO E HIGADO 24X85gr,pro plan,gato,húmedo,1850,1290,2690,1843
+171,12341824,PRO PLAN Kitten Wet Pollo 85 gr,pro plan,gato,húmedo,1950,1133,2690,1908
+172,12482280,PRO PLAN PUPPY POLLO Y ARROZ 12X370gr,pro plan,perro,húmedo,3990,2700,4690,3498
+173,12482108,PRO PLAN SENSITIVE DOG SALMON Y ARROZ 12X370gr,pro plan,perro,,3990,2990,3910,3521
+174,12480321,PRO PLAN URINARY CAT CARNE Y POLLO 24X85gr,pro plan,gato,húmedo,1850,1490,2200,1809
+175,12476108,"PROPLAN CatAdt Sensitive Stomach 3,0kg",pro plan,gato,,34100,26350,28990,28052
