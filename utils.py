@@ -15,14 +15,15 @@ from PIL import Image
 load_dotenv()
 OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'key.json'
-os.environ["GOOGLE_API_KEY"] = 'key.json'
+GOOGLE_API_KEY = os.environ['GCP_API_KEY']
 
 # OpenAI Models
 openai_model_3 = ChatOpenAI(temperature=0, model_name='gpt-3.5-turbo', openai_api_key=OPENAI_API_KEY)
 openai_model_4 = ChatOpenAI(temperature=0, model_name='gpt-4-turbo-preview', openai_api_key=OPENAI_API_KEY)
 # GCP Model (Gemini Pro) v2
 gcp_model = VertexAI(temperature=0, model_name="gemini-pro")
-gcp_model_vision = ChatGoogleGenerativeAI(model="gemini-pro-vision")
+gcp_model_vision = ChatGoogleGenerativeAI(temperature=0.6, model="gemini-pro-vision", google_api_key=GOOGLE_API_KEY)
+
 
 def analyze_image(image_path, model=gcp_model_vision):
     image = Image.open(image_path)
@@ -31,13 +32,15 @@ def analyze_image(image_path, model=gcp_model_vision):
         content=[
             {
                 "type": "text",
-                "text": "What's in this image?If is data related be very specific.Always answer in spanish",
+                "text": "Que puedes decir acerca de la imágen? Se específico y detallado",
             },  # You can optionally provide text parts
             {"type": "image_url", "image_url": image_path},
         ]
     )
-    response = model.invoke([message])
+    response = model.invoke([message]).content
     return response
+
+
 def pandas_agent_func(df, user_message, model='gcp', steps=True): #callback,
     try:
         if model == 'gcp':

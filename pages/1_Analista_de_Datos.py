@@ -7,6 +7,12 @@ import matplotlib
 import seaborn as sns
 matplotlib.use('tkagg')
 
+st.set_page_config(
+    page_title="Data Analyst Testing",
+    page_icon=":robot_face:",
+    layout="wide",
+)
+
 
 st.title(':robot_face: Analista de datos')
 # Display DataFrame
@@ -15,12 +21,14 @@ try:
     df = st.session_state.df
     st.dataframe(df)
 except Exception as e:
-    st.write(f'Error: {e}')
+    st.error(f'Error: {e}')
 
 user_input = st.text_input("Que desea saber de la tabla?")
 #st_callback = StreamlitCallbackHandler(st.container())
 if user_input:
-    response = pandas_agent_func(df, user_input, model='gpt', steps=True) #,callback=st_callback
+    with st.spinner('Pensando...'):
+        response = pandas_agent_func(df, user_input, model='gpt', steps=True) #,callback=st_callback
+
     output_response = response['output']
     code_response = response['intermediate_steps'][-1][0].tool_input['query']
     print('test: \n')
