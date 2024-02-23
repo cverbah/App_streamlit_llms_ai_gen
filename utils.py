@@ -1,0 +1,87 @@
+import os
+from dotenv import load_dotenv
+import pandas as pd
+import vertexai
+import google.generativeai as genai
+from langchain_openai import ChatOpenAI
+from langchain_google_vertexai import VertexAI
+from langchain_experimental.agents.agent_toolkits import create_pandas_dataframe_agent
+from langchain.agents.agent_types import AgentType
+
+
+#env
+load_dotenv()
+OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'key.json'
+
+# OpenAI Models
+openai_model_3 = ChatOpenAI(temperature=0, model_name='gpt-3.5-turbo', openai_api_key=OPENAI_API_KEY)
+openai_model_4 = ChatOpenAI(temperature=0, model_name='gpt-4-turbo-preview', openai_api_key=OPENAI_API_KEY)
+# GCP Model (Gemini Pro) v2
+gcp_model = VertexAI(temperature=0, model_name="gemini-pro")
+
+
+def pandas_agent_func(df, user_message, model='gcp', steps=True): #callback,
+    try:
+        if model == 'gcp':
+            model = gcp_model
+            agent = AgentType.ZERO_SHOT_REACT_DESCRIPTION
+        else:
+            model = openai_model_3
+            agent = AgentType.OPENAI_FUNCTIONS
+
+        agent = create_pandas_dataframe_agent(
+            model,
+            df,
+            verbose=True,
+            agent_type=agent,
+            handle_parsing_errors=True,
+            return_intermediate_steps=steps,
+        )
+        tool_input = {
+            "input": {
+                "name": "python",
+                "arguments": f'{user_message}. Always speak in spanish'
+            }
+        }
+        if steps:
+            response = agent(tool_input) #, callbacks=[callback]
+            return response
+
+        response = agent.run(tool_input) #, callbacks=[callback]
+        return response
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return None
+
+
+def format_pricing_table(df):
+    df = df.iloc[:, :9]
+    df.columns = (df.columns.
+                  str.replace(' ', '_').
+                  str.lower().
+                  str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8'))
+
+    df['sku'] = df['sku'].astype(str)
+    df['mas_bajo'] = df['mas_bajo'].apply(lambda row: int(row.replace('$ ', '').replace(',', '')))
+    df['mas_alto'] = df['mas_alto'].apply(lambda row: int(row.replace('$ ', '').replace(',', '')))
+    df['precio_mercado'] = df['precio_mercado'].apply(lambda row: int(row.replace('$ ', '').replace(',', '')))
+    df['precio_de_lista'] = df['precio_de_lista'].apply(lambda row: int(row.replace('$ ', '').replace(',', '')))
+    df = df.reset_index(drop=True)
+    return df
+
+def format_compete_table(df):
+    df.columns = (df.columns.
+                  str.replace(' ', '_').
+                  str.lower().
+                  str.normalize('NFKD').str.encode('ascii', errors='ignore').str.decode('utf-8'))
+
+    df['sku_tienda'] = df['sku_tienda'].astype(str)
+    df['fecha'] = pd.to_datetime(df['fecha'])
+    #df['precio_normal'] = df['precio_normal'].apply(lambda row: int(row.replace('$ ', '').replace(',', '')))
+    #df['precio_final'] = df['precio_final'].apply(lambda row: int(row.replace('$ ', '').replace(',', '')))
+    #df['precio_tarjeta'] = df['precio_tarjeta'].apply(lambda row: int(row.replace('$ ', '').replace(',', '')))
+
+    df = df.reset_index(drop=True)
+    return df
