@@ -31,10 +31,10 @@ if uploaded_img is not None:
         f.write(uploaded_img.read())
 
     image_path = os.path.join(temp_dir, uploaded_img.name)
-    print(f'image temp path: {image_path}')
+    #print(f'image temp path: {image_path}')
 
 # Display the uploaded image
-if uploaded_img is not None:
+if uploaded_img:
 
     col1, col2 = st.columns(2, gap='large')
     with col1:
