@@ -16,7 +16,7 @@ st.title(':wrench: Dashboard & LLMs Tests :wrench:')
 uploaded_file = st.file_uploader("Seleccione un archivo CSV para analizar", type="csv")
 
 try:
-    if uploaded_file is not None:
+    if uploaded_file:
         file_details = {"FileName": uploaded_file.name, "FileType": uploaded_file.type, } #"FileSize": uploaded_file.size
         st.write(file_details)
 
