@@ -22,17 +22,26 @@ openai_model_3 = ChatOpenAI(temperature=0, model_name='gpt-3.5-turbo', openai_ap
 openai_model_4 = ChatOpenAI(temperature=0, model_name='gpt-4-turbo-preview', openai_api_key=OPENAI_API_KEY)
 # GCP Model (Gemini Pro) v2
 gcp_model = VertexAI(temperature=0, model_name="gemini-pro")
-gcp_model_vision = ChatGoogleGenerativeAI(temperature=0.6, model="gemini-pro-vision", google_api_key=GOOGLE_API_KEY)
+gcp_model_vision = ChatGoogleGenerativeAI(temperature=0, model="gemini-pro-vision", google_api_key=GOOGLE_API_KEY)
 
 
-def analyze_image(image_path, model=gcp_model_vision):
+def analyze_image(image_path, model=gcp_model_vision, analyst_type=1):
+    assert analyst_type in ([1, 2, 3]), 'analyst_type must be in [1,2,3]'
     image = Image.open(image_path)
+    if analyst_type:
+        prompt = 'Que puedes decir acerca de la imágen? Se específico y detallado. Siempre respondes en español.'
+
+    if analyst_type == 2:
+        prompt = 'Haz un análisis del siguiente gráfico o tabla. Actúa como un experto en ciencia de datos. Siempre respondes en español.'
+
+    if analyst_type == 3:
+        prompt = 'Extract all the relevant data from the the image and return it with a json format. Only use the data from the image.'
 
     message = HumanMessage(
         content=[
             {
                 "type": "text",
-                "text": "Que puedes decir acerca de la imágen? Se específico y detallado",
+                "text": f"{prompt}",
             },  # You can optionally provide text parts
             {"type": "image_url", "image_url": image_path},
         ]

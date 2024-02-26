@@ -42,12 +42,25 @@ if uploaded_img is not None:
 
         st.image(uploaded_img, caption='image', use_column_width='auto',width=0.7)
     with col2:
-        st.header(':robot_face: Analista Gemini Pro Vision')
+        st.header(':robot_face: Analista 1')
         try:
             with st.spinner('Pensando...'):
-                response = analyze_image(image_path, model=gcp_model_vision)
+                response = analyze_image(image_path, model=gcp_model_vision, analyst_type=1)
                 st.write(response)
                 st.success('Ok!')
+
+            st.header(':robot_face: Analista Experto 2')
+            with st.spinner('Pensando...'):
+                response = analyze_image(image_path, model=gcp_model_vision, analyst_type=2)
+                st.write(response)
+                st.success('Ok!')
+
+            st.header(':robot_face: Data Extractor:')
+            with st.spinner('Pensando...'):
+                response = analyze_image(image_path, model=gcp_model_vision, analyst_type=3)
+                st.write(response)
+                st.success('Ok!')
+
         except Exception as e:
             st.error(e)
 
