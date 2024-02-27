@@ -26,6 +26,7 @@ gcp_model_vision = ChatGoogleGenerativeAI(temperature=0, model="gemini-pro-visio
 
 
 def analyze_promo_v2(image_path1,image_path2, model=gcp_model_vision):
+    '''' just testing for now : same example from gcp'''
 
     instructions = "Instructions: Consider the following image that contains fruits:"
     prompt1 = "How much should I pay for the fruits given the following price list?"
