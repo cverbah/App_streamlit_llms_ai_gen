@@ -12,7 +12,7 @@ import tempfile
 import time
 
 st.set_page_config(
-    page_title="Images Analyst Testing",
+    page_title="Images Analyst Testing 2",
     page_icon=":robot_face:",
     layout="wide",
 )
