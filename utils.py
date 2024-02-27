@@ -59,6 +59,8 @@ def analyze_promo_v2(image_path1,image_path2, model=gcp_model_vision):
     )
     response = model.invoke([message]).content
     return response
+
+
 def analyze_promo(image_path, model=gcp_model_vision):
 
     prompt = 'Extract all the relevant data from the the image and return it with a json format. Only use the data from the image. Image:'
