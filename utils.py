@@ -25,9 +25,60 @@ gcp_model = VertexAI(temperature=0, model_name="gemini-pro")
 gcp_model_vision = ChatGoogleGenerativeAI(temperature=0, model="gemini-pro-vision", google_api_key=GOOGLE_API_KEY)
 
 
+def analyze_promo_v2(image_path1,image_path2, model=gcp_model_vision):
+
+    instructions = "Instructions: Consider the following image that contains fruits:"
+    prompt1 = "How much should I pay for the fruits given the following price list?"
+    prompt2 = """
+    Answer the question through these steps:
+    Step 1: Identify what kind of fruits there are in the first image.
+    Step 2: Count the quantity of each fruit.
+    Step 3: For each grocery in first image, check the price of the grocery in the price list.
+    Step 4: Calculate the subtotal price for each type of fruit.
+    Step 5: Calculate the total price of fruits using the subtotals.
+
+    Answer and describe the steps taken:
+    """
+
+    message = HumanMessage(
+        content=[
+            {
+             "type": "text",
+             "text": f"{instructions}",
+            },
+            {"type": "image_url",
+             "image_url": image_path1},
+            {"type": "text",
+             "text": prompt1},
+            {"type": "image_url",
+             "image_url": image_path2},
+            {"type": "text",
+             "text": prompt2}
+        ]
+    )
+    response = model.invoke([message]).content
+    return response
+def analyze_promo(image_path, model=gcp_model_vision):
+
+    prompt = 'Extract all the relevant data from the the image and return it with a json format. Only use the data from the image. Image:'
+    prompt2 = ''
+
+    message = HumanMessage(
+        content=[
+            {
+             "type": "text",
+             "text": f"{prompt}",
+            },
+            {"type": "image_url",
+             "image_url": image_path}
+        ]
+    )
+    response = model.invoke([message]).content
+    return response
+
 def analyze_image(image_path, model=gcp_model_vision, analyst_type=1):
     assert analyst_type in ([1, 2, 3]), 'analyst_type must be in [1,2,3]'
-    image = Image.open(image_path)
+
     if analyst_type:
         prompt = 'Que puedes decir acerca de la imágen? Se específico y detallado. Siempre respondes en español.'
 
@@ -40,10 +91,11 @@ def analyze_image(image_path, model=gcp_model_vision, analyst_type=1):
     message = HumanMessage(
         content=[
             {
-                "type": "text",
-                "text": f"{prompt}",
+             "type": "text",
+             "text": f"{prompt}",
             },  # You can optionally provide text parts
-            {"type": "image_url", "image_url": image_path},
+            {"type": "image_url",
+             "image_url": image_path}
         ]
     )
     response = model.invoke([message]).content
