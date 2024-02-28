@@ -1,8 +1,6 @@
 import os
 from dotenv import load_dotenv
 import pandas as pd
-import vertexai
-import google.generativeai as genai
 from langchain_openai import ChatOpenAI
 from langchain_google_vertexai import VertexAI
 from langchain_google_genai import ChatGoogleGenerativeAI
