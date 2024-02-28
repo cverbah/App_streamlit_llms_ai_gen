@@ -20,7 +20,7 @@ st.set_page_config(
 st.title(':robot_face: Analista de  Imágenes')
 st.text('Experto en analizar todo tipo de imágenes')
 
-uploaded_img = st.file_uploader("Selecciona una imágen para analizar", type=["jpg", "jpeg", "png", "bmp", "gif"])
+uploaded_img = st.file_uploader("Selecciona una imágen para analizar", type=["jpg", "jpeg", "png", "bmp", "gif", "webp"])
 if uploaded_img is not None:
     file_details = {"FileName": uploaded_img.name, "FileType": uploaded_img.type, "FileSize": uploaded_img.size}
     #st.write(file_details)

@@ -26,17 +26,24 @@ gcp_model_vision = ChatGoogleGenerativeAI(temperature=0, model="gemini-pro-visio
 def analyze_promo_v2(image_path1,image_path2, model=gcp_model_vision):
     '''' just testing for now : same example from gcp'''
 
-    instructions = "Instructions: Consider the following image that contains fruits:"
-    prompt1 = "How much should I pay for the fruits given the following price list?"
-    prompt2 = """
-    Answer the question through these steps:
-    Step 1: Identify what kind of fruits there are in the first image.
-    Step 2: Count the quantity of each fruit.
-    Step 3: For each grocery in first image, check the price of the grocery in the price list.
-    Step 4: Calculate the subtotal price for each type of fruit.
-    Step 5: Calculate the total price of fruits using the subtotals.
-
-    Answer and describe the steps taken:
+    instructions = "Instrucciones: Las siguientes imágenes contienen promociones de retails, extrae información de las promociones"
+    prompt1 = """
+    Extrae la información siguiendo estos pasos y guardando la información en un archivo json siguiendo la siguiente estructura:
+    [{'index': indice de imágen partiendo con 1}]
+    Paso 1: Analiza las ofertas y promociones de manera general presentes en cada imágen, respondiendo las siguientes preguntas,
+    agregando los datos al archivo json:\
+    'categorias_en_promo': Sobre qué categorías trata la promoción? Usa siempre 3 palabaras claves y almacenalas en una lista  
+    'marcas_en_promo': Qué marcas están con promoción? Almacena todas las marcas detectadas en una lista 
+    'oferta_app': Hay ofertas especiales usando la app del retail? Si es que hay, describe la oferta. Si no hay ofertas usando la app del retail devuelve null.
+    'promociones_envio': Hay promociones para el envío?  Si es que hay, describe la promoción. Si no hay, devuelve null.
+    'publico_objetivo': Cual crees que es el público objetivo de esta promoción? Haz una breve descripción.
+    [{'promocion': analisis del paso 1}]
+    Paso 3: Identifica cuantos productos con ofertas hay en la imagen.
+    Paso 4: Extra la información de cada producto y agregala al archivo json siguiendo la siguiente estructura:\
+    ['productos_en_oferta': [{'nombre_del_producto': nombre completo del producto, 'precio_normal': precio normal, 'precio_oferta': precio oferta,\
+    'descuento': descuento formateado con porcentaje]]
+    Paso 3: Si no es posible extraer ciertos datos de la imagen, guardar el dato como null
+    Paso 4: Formatea el archivo
     """
 
     message = HumanMessage(
@@ -47,12 +54,10 @@ def analyze_promo_v2(image_path1,image_path2, model=gcp_model_vision):
             },
             {"type": "image_url",
              "image_url": image_path1},
-            {"type": "text",
-             "text": prompt1},
             {"type": "image_url",
              "image_url": image_path2},
             {"type": "text",
-             "text": prompt2}
+             "text": prompt1},
         ]
     )
     response = model.invoke([message]).content
