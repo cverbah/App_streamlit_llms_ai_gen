@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 import seaborn as sns
 matplotlib.use('tkagg')
+from streamlit_extras.app_logo import add_logo
 
 st.set_page_config(
     page_title="Data Analyst Testing",
@@ -13,7 +14,7 @@ st.set_page_config(
     layout="wide",
 )
 
-
+add_logo("https://geti.cl/public/img/geti-header-logo.webp", height=10)
 st.title(':robot_face: Analista de datos')
 # Display DataFrame
 st.subheader("DataFrame cargado:")

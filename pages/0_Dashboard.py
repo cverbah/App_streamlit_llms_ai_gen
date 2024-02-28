@@ -7,13 +7,15 @@ matplotlib.use('tkagg')
 from PIL import Image
 import os
 import streamlit as st
-
+from streamlit_extras.app_logo import add_logo
 
 st.set_page_config(
     page_title="Dashboard Testing",
     page_icon="	:gear:",
     layout="wide",
 )
+add_logo("https://geti.cl/public/img/geti-header-logo.webp", height=10)
+st.title('Dashboard: #Todo')
 try:
     with st.spinner('Cargando datos...'):
         df = st.session_state.df
@@ -31,14 +33,14 @@ with st.sidebar:
         df_filtered = df[df.estado == select_state].reset_index(drop=True)
 
 # Dashboard Main Panel
-col1, col2, col3  = st.columns(3, gap='medium')
+col1, col2, col3 = st.columns(3, gap='medium')
 with col1:
-    pass
+    st.write('todo')
 
 with col2:
-    pass
+    st.write('todo')
 
 with col3:
-    pass
+    st.write('todo')
 
 

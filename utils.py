@@ -8,14 +8,14 @@ from langchain_experimental.agents.agent_toolkits import create_pandas_dataframe
 from langchain.agents.agent_types import AgentType
 from langchain_core.messages import HumanMessage
 from PIL import Image
-from pytrends.request import TrendReq
-from pytrends.exceptions import TooManyRequestsError
+from serpapi import GoogleSearch
 
 # env
 load_dotenv()
 OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'key.json'
 GOOGLE_API_KEY = os.environ['GCP_API_KEY']
+SERPAPI_API_KEY = os.environ['SERPAPI_API_KEY']  # https://serpapi.com/google-trends-api
 
 # OpenAI Models
 openai_model_3 = ChatOpenAI(temperature=0, model_name='gpt-3.5-turbo', openai_api_key=OPENAI_API_KEY)
@@ -25,13 +25,19 @@ gcp_model = VertexAI(temperature=0, model_name="gemini-pro")
 gcp_model_vision = ChatGoogleGenerativeAI(temperature=0, model="gemini-pro-vision", google_api_key=GOOGLE_API_KEY)
 
 
-# Function to get Google Trends data
-def get_google_trends_data(keyword, timeframe='today 5-y', geo='US'):
-    pytrends = TrendReq(hl='en-US', tz=360)
-    pytrends.build_payload([keyword], cat=0, timeframe=timeframe, geo=geo, gprop='')
-    data = pytrends.interest_over_time()
-    return data
-
+def search_google_trends(query, data_type='RELATED_TOPICS', geo='CL'):
+    assert data_type in ['RELATED_TOPICS', 'RELATED_QUERIES', 'GEO_MAP_0', 'GEO_MAP', 'TIMESERIES'], 'data_type not supported'
+    params = {
+        "engine": "google_trends",
+        "q": query,
+        "geo": geo,
+        "data_type": data_type,
+        "api_key": SERPAPI_API_KEY
+    }
+    search = GoogleSearch(params)
+    results = search.get_dict()
+    #interest_over_time = results["interest_over_time"]
+    return results
 
 
 def analyze_promo_v2(image_path1,image_path2, model=gcp_model_vision):

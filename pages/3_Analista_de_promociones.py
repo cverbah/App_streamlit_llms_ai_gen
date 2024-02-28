@@ -10,6 +10,7 @@ from PIL import Image
 import os
 import tempfile
 import time
+from streamlit_extras.app_logo import add_logo
 
 st.set_page_config(
     page_title="Images Analyst Testing 2",
@@ -17,6 +18,7 @@ st.set_page_config(
     layout="wide",
 )
 
+add_logo("https://geti.cl/public/img/geti-header-logo.webp", height=10)
 st.title(':robot_face: Analista de  Promociones')
 st.text('Experto en extraer info de anuncios')
 

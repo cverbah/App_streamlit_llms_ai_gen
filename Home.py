@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import os
 from utils import format_pricing_table, format_compete_table
-
+from streamlit_extras.app_logo import add_logo
 
 
 st.set_page_config(
@@ -10,7 +10,7 @@ st.set_page_config(
     page_icon=":robot_face:",
     layout="wide",
 )
-
+add_logo("https://geti.cl/public/img/geti-header-logo.webp", height=10)
 st.title(':wrench: Dashboard & LLMs Tests :wrench:')
 
 uploaded_file = st.file_uploader("Seleccione un archivo CSV para analizar", type="csv")
