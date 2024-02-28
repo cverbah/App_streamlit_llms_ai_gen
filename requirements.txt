@@ -11,5 +11,4 @@ Pillow==9.5.0
 matplotlib==3.7.1
 seaborn==0.12.2
 PyQt5==5.15.10
-
-
+pytrends==4.9.2

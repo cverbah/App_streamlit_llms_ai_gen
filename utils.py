@@ -8,8 +8,10 @@ from langchain_experimental.agents.agent_toolkits import create_pandas_dataframe
 from langchain.agents.agent_types import AgentType
 from langchain_core.messages import HumanMessage
 from PIL import Image
+from pytrends.request import TrendReq
+from pytrends.exceptions import TooManyRequestsError
 
-#env
+# env
 load_dotenv()
 OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'key.json'
@@ -21,6 +23,15 @@ openai_model_4 = ChatOpenAI(temperature=0, model_name='gpt-4-turbo-preview', ope
 # GCP Model (Gemini Pro) v2
 gcp_model = VertexAI(temperature=0, model_name="gemini-pro")
 gcp_model_vision = ChatGoogleGenerativeAI(temperature=0, model="gemini-pro-vision", google_api_key=GOOGLE_API_KEY)
+
+
+# Function to get Google Trends data
+def get_google_trends_data(keyword, timeframe='today 5-y', geo='US'):
+    pytrends = TrendReq(hl='en-US', tz=360)
+    pytrends.build_payload([keyword], cat=0, timeframe=timeframe, geo=geo, gprop='')
+    data = pytrends.interest_over_time()
+    return data
+
 
 
 def analyze_promo_v2(image_path1,image_path2, model=gcp_model_vision):
