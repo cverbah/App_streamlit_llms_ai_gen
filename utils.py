@@ -33,7 +33,7 @@ def analyze_promo_v2(image_path1,image_path2, model=gcp_model_vision):
     [{'index': indice de imágen partiendo con 1}]
     Paso 1: Analiza las ofertas y promociones de manera general presentes en cada imágen, respondiendo las siguientes preguntas,
     agregando los datos al archivo json:\
-    'categorias_en_promo': Sobre qué categorías trata la promoción? Usa siempre 3 palabaras claves y almacenalas en una lista.  
+    'categorias_en_promo': Sobre qué categorías trata la promoción? Usa siempre 3 palabaras claves y almacénalas en una lista.  
     'marcas_en_promo': Qué marcas están con promoción? Almacena todas las marcas detectadas en una lista. Si no hay, devuelve null.
     'cuotas_sin_interes': Es posible comprar en cuotas sin interés? Si es que sí, cuantas cuotas? Si no detectas la palabra cuota, devuelve null.
     'cupon_app': Hay cupones de descuento usando sólo la app del retail? Si es que hay, extrae la información. Si no hay, devuelve null.
