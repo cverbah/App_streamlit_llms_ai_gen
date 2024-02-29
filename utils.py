@@ -56,11 +56,11 @@ def analyze_promo_v2(image_path1,image_path2, model=gcp_model_vision):
     'cupon_app': Hay cupones de descuento usando sólo la app del retail? Si es que hay, extrae la información. Si no hay, devuelve null.
     'promociones_envio': Hay promociones para el envío?  Si es que hay, describe la promoción. Si no hay, devuelve null.
     'publico_objetivo': Cual crees que es el público objetivo de esta promoción? Haz una breve descripción.
-    [{'promocion': analisis del paso 1}]
+    [{'promocion': analisis del paso 1 y de la promoción principal de la imágen}]
     Paso 2: Identifica cuantos productos con ofertas hay en la imagen.
     Paso 3: Extra la información de cada producto y agregala al archivo json siguiendo la siguiente estructura:\
     ['productos_en_oferta': [{'nombre_del_producto': nombre completo del producto, 'precio_normal': precio normal, 'precio_oferta': precio oferta,\
-    'descuento': descuento formateado con porcentaje]]
+    'descuento': descuento formateado con porcentaje]}]
     Si no logras detectar productos específicos en la imagen, devuelve la lista vacía.
     Paso 4: Si no es posible extraer ciertos datos de la imagen, guardar el dato como null
     Paso 5: Formatea el archivo
