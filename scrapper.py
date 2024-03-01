@@ -29,21 +29,42 @@ def scroll_all_website(driver, scroll_increment=100, scroll_delay=0.25): # scrol
             scroll_delay = 1
 
 
-def get_imgs(soup):
-    elements = soup.find_all('div', attrs={"class": "lazyload-wrapper"})
-    all_imgs = []
-    for element in elements:
-        if element.picture:
-            element_dict = {}
+def has_specific_class_and_attribute_top_banner(tag, class_match='carousel-item', attribute='id', attribute_match='showcase-Showcase-'):
+    return (tag.has_attr('class') and any(class_match in cls for cls in tag['class'])) and \
+           (tag.has_attr(attribute) and attribute_match in tag[attribute])
 
+def has_specific_class_and_attribute_second_banner(tag, class_match='BannerCard-module', attribute='id', attribute_match='main-HoldingBanner'):
+    return (tag.has_attr('class') and any(class_match in cls for cls in tag['class'])) and \
+           (tag.has_attr(attribute) and attribute_match in tag[attribute])
+
+
+def has_specific_class_and_attribute_lower_grid(tag, class_match='grid-card', attribute='id', attribute_match='grid-card-'):
+    return (tag.has_attr('class') and any(class_match in cls for cls in tag['class'])) and \
+           (tag.has_attr(attribute) and attribute_match in tag[attribute])
+
+
+def has_specific_class_and_attribute_lowest_carousel(tag, class_match='CategoryCarousel', attribute='id', attribute_match='main-CategoryCarousel'):
+    return (tag.has_attr('class') and any(class_match in cls for cls in tag['class'])) and \
+           (tag.has_attr(attribute) and attribute_match in tag[attribute])
+
+
+def get_df_with_imgs(all_sections: list):
+    dict_sale_type ={1: 'ofertas_principales', 2: 'ofertas_secundarias', 3: 'grid_ofertas', 4:'lo_ultimo'}
+    data = []
+    for idx, containers in enumerate(all_sections, start=1):
+      for pos, element in enumerate(containers, start=1):
+        if element.picture:
+            promo = {}
             name = str(element.picture.find('img').get('alt')).lower()
-            element_dict['name_img'] = unidecode(name)
+            promo['name_img'] = unidecode(name)
+            promo['tipo_oferta'] = dict_sale_type[idx]
+            promo['position'] = pos
             url = element.picture.find('source').get('srcset')
             formatted_url = ''.join(url.split('?disable')[0])
-            element_dict['url_img'] = formatted_url
-            all_imgs.append(element_dict)
+            promo['url_img'] = formatted_url
+            data.append(promo)
 
-    df = pd.DataFrame(all_imgs)
+    df = pd.DataFrame(data)
     return df
 
 
@@ -80,7 +101,15 @@ def main():
 
         soup = BeautifulSoup(website_code, 'html.parser')
         #print(soup.prettify()) #for developing
-        df_imgs = get_imgs(soup)
+        # sections with promos
+        top_banner = soup.find_all(has_specific_class_and_attribute_top_banner)
+        second_banner = soup.find_all(has_specific_class_and_attribute_second_banner)
+        lower_grid = soup.find_all(has_specific_class_and_attribute_lower_grid)
+        lowest_carousel = soup.find_all(has_specific_class_and_attribute_lowest_carousel)
+
+        all_sections = [top_banner, second_banner, lower_grid, lowest_carousel]
+        df_imgs = get_df_with_imgs(all_sections)
+
         df_imgs['name_img'] = df_imgs['name_img'].apply(lambda row: flag_blacklist(row))
         df_imgs = df_imgs[~df_imgs.name_img.isin(['flagged_as_blacklisted', ''])]  # filter out
         df_imgs = df_imgs.drop_duplicates().reset_index(drop=True)  # filter out

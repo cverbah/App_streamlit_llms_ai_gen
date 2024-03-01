@@ -2,6 +2,6 @@
 *.env
 #ignore idea
 *.idea
+*.txt
 key.json
 temp.csv
-webpage_source.txt
