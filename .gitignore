@@ -2,6 +2,5 @@
 *.env
 #ignore idea
 *.idea
-*.txt
 key.json
 temp.csv
