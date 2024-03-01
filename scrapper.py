@@ -6,9 +6,9 @@ from selenium.common.exceptions import ElementClickInterceptedException
 from bs4 import BeautifulSoup
 import pandas as pd
 import time
-import urllib
-import requests
 import re
+from unidecode import unidecode
+
 
 ## functions ###
 
@@ -35,26 +35,30 @@ def get_imgs(soup):
     for element in elements:
         if element.picture:
             element_dict = {}
-            element_dict['name_img'] = element.picture.find('img').get('alt')
-            element_dict['url_img'] = element.picture.find('source').get('srcset')
+
+            name = str(element.picture.find('img').get('alt')).lower()
+            element_dict['name_img'] = unidecode(name)
+            url = element.picture.find('source').get('srcset')
+            formatted_url = ''.join(url.split('?disable')[0])
+            element_dict['url_img'] = formatted_url
             all_imgs.append(element_dict)
 
     df = pd.DataFrame(all_imgs)
     return df
 
 
-blacklist = ['falabella', 'sodimac', 'tottus', 'cmr', 'nosotros', 'ecosistema', 'seguros', 'puntospesos']
-def clean_name(row, blacklist=blacklist):
+blacklist = ['falabella', 'sodimac', 'tottus', 'linio', 'cmr', 'nosotros', 'ecosistema', 'seguros', 'puntospesos']
+def flag_blacklist(row, blacklist=blacklist):
     row = str(row)
     tokens = re.findall(r"(?=("+'|'.join(blacklist)+r"))", row)
     if len(tokens) > 0:
-      return 'blacklisted'
+      return 'flagged_as_blacklisted'
     else:
       return row
 
 
 def main():
-    ''''testing'''
+    ''''testing: get promotions and discounts images from home site'''
     url ='https://www.falabella.com/falabella-cl'
 
     options = webdriver.ChromeOptions()
@@ -77,9 +81,12 @@ def main():
         soup = BeautifulSoup(website_code, 'html.parser')
         #print(soup.prettify()) #for developing
         df_imgs = get_imgs(soup)
-        df_imgs['name_img'] = df_imgs['name_img'].apply(lambda row: clean_name(row))
-        df_imgs = df_imgs[df_imgs.name_img != 'blacklisted'].reset_index(drop=True)  # filter out
+        df_imgs['name_img'] = df_imgs['name_img'].apply(lambda row: flag_blacklist(row))
+        df_imgs = df_imgs[~df_imgs.name_img.isin(['flagged_as_blacklisted', ''])]  # filter out
+        df_imgs = df_imgs.drop_duplicates().reset_index(drop=True)  # filter out
+        df_imgs['datetime_checked'] = pd.to_datetime('today')
         print(df_imgs.head(10))
+        df_imgs.to_csv('df_promos_retail.csv')
 
     except Exception as e:
         print(e)
