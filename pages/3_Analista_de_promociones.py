@@ -8,7 +8,6 @@ import seaborn as sns
 matplotlib.use('tkagg')
 from PIL import Image
 import os
-import tempfile
 import time
 from streamlit_extras.app_logo import add_logo
 
@@ -22,50 +21,53 @@ add_logo("https://geti.cl/public/img/geti-header-logo.webp", height=10)
 st.title(':robot_face: Analista de  Promociones')
 st.text('Experto en extraer info de anuncios')
 
-uploaded_img = st.file_uploader("Selecciona una imágen para analizar", type=["jpg", "jpeg", "png", "bmp", "gif", "webp"], key="1")
-if uploaded_img:
-    file_details = {"FileName": uploaded_img.name, "FileType": uploaded_img.type, "FileSize": uploaded_img.size}
-    #st.write(file_details)
+try:
+    with st.spinner('Cargando datos...'):
+        df = st.session_state.df
 
-    # Save temp img
-    temp_dir = tempfile.mkdtemp()
-    with open(os.path.join(temp_dir, uploaded_img.name), "wb") as f:
-        f.write(uploaded_img.read())
+except Exception as e:
+    st.error(e)
 
-    image_path1 = os.path.join(temp_dir, uploaded_img.name)
-    #print(f'image temp path: {image_path}')
-
-uploaded_img2 = st.file_uploader("Selecciona una imágen para analizar", type=["jpg", "jpeg", "png", "bmp", "gif", "webp"], key="2")
-if uploaded_img2:
-    file_details = {"FileName": uploaded_img2.name, "FileType": uploaded_img2.type, "FileSize": uploaded_img2.size}
-    # Save temp img
-    temp_dir2 = tempfile.mkdtemp()
-    with open(os.path.join(temp_dir2, uploaded_img2.name), "wb") as f:
-        f.write(uploaded_img2.read())
-
-    image_path2 = os.path.join(temp_dir2, uploaded_img2.name)
-
-# Display the uploaded image
-if uploaded_img:
+st.subheader("DataFrame:")
+if len(df) > 0:
+    st.dataframe(df)
 
     col1, col2, col3 = st.columns(3, gap='large')
     with col1:
-        st.header(':frame_with_picture: Imagen 1')
+        st.header(':magic_wand: Análisis ofertas principales')
+        try:
+            df_op = df[df.tipo_oferta == 'ofertas_principales']
+            #img_data = list(zip(df_op['url_img'], df_op['position'], df_op['name_img']))
+            img_data = list(zip(df_op['position'], df_op['promocion'], df_op['categorias_en_promo'], df_op['publico_objetivo']))
+            with st.spinner('Pensando...'):
+                response = analyze_promo_v4(img_data, promo_type='promociones principales', format=False, model=gcp_model_txt)
+                st.write(response)
+                st.success('Ok!')
 
-        st.image(uploaded_img, caption='image', use_column_width='auto', width=0.8)
+        except Exception as e:
+            st.error(e)
 
     with col2:
-        st.header(':frame_with_picture: Imagen 2 ')
-        time.sleep(3)
-        st.write('Dummy')
-        #st.image(uploaded_img2, caption='image2', use_column_width='auto', width=0.8)
-    with col3:
-        st.header(':robot_face: Analista Promos')
+        st.header(':magic_wand: Análisis grid de ofertas')
         try:
+            df_og = df[df.tipo_oferta == 'grid_ofertas']
+            img_data = list(zip(df_og['url_img'], df_og['position'], df_og['name_img']))
+            #with st.spinner('Pensando...'):
+            #    response = analyze_promo_v3(img_data,promo_type='promociones secundarias', format=True, model=gcp_model_vision)
+            #    st.write(response)
+            #    st.success('Ok!')
+
+        except Exception as e:
+            st.error(e)
+
+
+    with col3:
+        st.header(':magic_wand: Análisis de lo último')
+        try:
+            df_lu = df[df.tipo_oferta == 'lo_ultimo']
+            img_data = list(zip(df_lu['url_img'], df_lu['position'], df_lu['name_img']))
             with st.spinner('Pensando...'):
-                #if uploaded_img2:
-                image_path2 = 'dummy'
-                response = analyze_promo_v2(image_path1, model=gcp_model_vision)
+                response = analyze_promo_v3(img_data, promo_type='lo más visto', format=True, model=gcp_model_vision)
                 st.write(response)
                 st.success('Ok!')
 

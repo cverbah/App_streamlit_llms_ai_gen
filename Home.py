@@ -27,8 +27,8 @@ try:
 
         #Dataframe formatting
         if 'df' not in st.session_state:
-            df = pd.read_csv(temp_location)
-            df = format_compete_table(df)
+            df = pd.read_csv(temp_location, index_col=0)
+            #df = format_compete_table(df)   # deactivated for now
 
             # Save the data to session state
             st.session_state.df = df
