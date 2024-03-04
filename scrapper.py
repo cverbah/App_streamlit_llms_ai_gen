@@ -23,7 +23,7 @@ def scroll_all_website(driver, scroll_increment=100, scroll_delay=0.25): # scrol
 
         current_position += scroll_increment
         scanned = round(current_position/page_height, 2)
-        print(f'scanned: {scanned}')
+        print(f' website scanned: {scanned:.2%}')
         if scanned > 0.1:  # speed up
             scroll_increment = 300
             scroll_delay = 1
@@ -91,7 +91,7 @@ def main():
         driver.get(url)
         time.sleep(1)
 
-        scroll_all_website(driver, scroll_increment=20, scroll_delay=1)
+        scroll_all_website(driver, scroll_increment=10, scroll_delay=1)
 
         # get code with lazyload-wrappers imgs loaded
         website_code = driver.page_source

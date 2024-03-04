@@ -9,6 +9,8 @@ from langchain.agents.agent_types import AgentType
 from langchain_core.messages import HumanMessage
 from PIL import Image
 from serpapi import GoogleSearch
+import json
+
 
 # env
 load_dotenv()
@@ -40,7 +42,7 @@ def search_google_trends(query, data_type='RELATED_TOPICS', geo='CL'):
     return results
 
 
-def analyze_promo_v2(image_path1,image_path2, model=gcp_model_vision):
+def analyze_promo_v2(image_path, format=True, model=gcp_model_vision):
     '''' just testing for now : same example from gcp'''
 
     instructions = "Instrucciones: Las siguientes imágenes contienen promociones de retails, extrae información de las promociones.Solo usa la información" \
@@ -57,31 +59,40 @@ def analyze_promo_v2(image_path1,image_path2, model=gcp_model_vision):
     'promociones_envio': Hay promociones para el envío?  Si es que hay, describe la promoción. Si no hay, devuelve null.
     'publico_objetivo': Cual crees que es el público objetivo de esta promoción? Haz una breve descripción.
     [{'promocion': analisis del paso 1 y de la promoción principal de la imágen}]
-    Paso 2: Identifica cuantos productos con ofertas hay en la imagen.
-    Paso 3: Extra la información de cada producto y agregala al archivo json siguiendo la siguiente estructura:\
+    Paso 2: Identifica cuantos productos con precios con descuentos hay en la imagen, mostrando el precio sin y con descuento. Si no sale el precio de cada producto de forma explícita, no guardes la información.
+    Paso 3: Extra la información de cada producto siempre y cuando tenga descuentos y agregala al archivo json siguiendo la siguiente estructura:\
     ['productos_en_oferta': [{'nombre_del_producto': nombre completo del producto, 'precio_normal': precio normal, 'precio_oferta': precio oferta,\
     'descuento': descuento formateado con porcentaje]}]
-    Si no logras detectar productos específicos en la imagen, devuelve la lista vacía.
+    Si no logras detectar productos específicos con precios con descuento en la imagen, devuelve la lista vacía.
     Paso 4: Si no es posible extraer ciertos datos de la imagen, guardar el dato como null
     Paso 5: Formatea el archivo
     """
+    try:
+        message = HumanMessage(
+            content=[
+                {
+                    "type": "text",
+                    "text": f"{instructions}",
+                },
+                {"type": "image_url",
+                 "image_url": image_path},
+                # {"type": "image_url",          #Desactivado multi img por ahora. Funciona
+                # "image_url": image_path2},
+                {"type": "text",
+                 "text": prompt1},
+            ]
+        )
+        response = model.invoke([message]).content
 
-    message = HumanMessage(
-        content=[
-            {
-             "type": "text",
-             "text": f"{instructions}",
-            },
-            {"type": "image_url",
-             "image_url": image_path1},
-            #{"type": "image_url",          #Desactivado multi img por ahora. Funciona
-             #"image_url": image_path2},
-            {"type": "text",
-             "text": prompt1},
-        ]
-    )
-    response = model.invoke([message]).content
-    return response
+        if format:
+            response = response.replace(' ```json\n', '').replace('\n```', '').replace('\n', '')
+            response = json.loads(response)
+
+        return response
+
+    except Exception as e:
+        print(e)
+        return 'img loading problem'
 
 
 def analyze_promo(image_path, model=gcp_model_vision):

@@ -65,7 +65,7 @@ if uploaded_img:
             with st.spinner('Pensando...'):
                 #if uploaded_img2:
                 image_path2 = 'dummy'
-                response = analyze_promo_v2(image_path1, image_path2, model=gcp_model_vision)
+                response = analyze_promo_v2(image_path1, model=gcp_model_vision)
                 st.write(response)
                 st.success('Ok!')
 
