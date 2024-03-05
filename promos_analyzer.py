@@ -4,6 +4,7 @@ from tqdm import tqdm
 from utils import analyze_promo_v2
 import time
 import json
+import sys
 
 
 def get_promo_data(row, key):
@@ -20,9 +21,10 @@ def get_promo_data(row, key):
     if row_dict == np.nan or row_dict == None:
         return np.nan
 
-def main():
+def main(argv):
+    assert argv[1] in ['falabella', 'paris'], 'retails supported: falabella or paris as argv'
     # import df
-    df = pd.read_csv('df_promos_retail.csv', index_col=0)
+    df = pd.read_csv(f'df_promos_retail_{argv[1]}.csv', index_col=0)
     print(df)
     print('analyzing...')
     start = time.time()
@@ -37,9 +39,9 @@ def main():
     df['cupon_app'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='cupon_app'))
     df['promociones_envio'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='promociones_envio'))
     df.drop(columns='promo_analysis', inplace=True)
-    df.to_csv('df_promos_retail_analysis.csv')
+    df.to_csv(f'df_promos_retail_analysis_{argv[1]}.csv')
     total = round(time.time() - start,2)
     print(f'time taken: {total} secs')
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv)
