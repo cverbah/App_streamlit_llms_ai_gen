@@ -1,5 +1,5 @@
 # :construction: Streamlit App :construction:
-testing some multimodal models with streamlit powered by langchain :bird: <br>
+Project powered mainly by langchain :bird: , streamlit, selenium, beautifulsoup and pandas<br>
 - The main idea of this project is to extract relevant data from promotions/banners from retails home pages using multimodal models
 - under construction ... :construction:
 
