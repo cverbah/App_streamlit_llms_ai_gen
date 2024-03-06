@@ -22,7 +22,7 @@ def get_promo_data(row, key):
         return np.nan
 
 def main(argv):
-    assert argv[1] in ['falabella', 'paris'], 'retails supported: falabella or paris as argv'
+    assert argv[1] in ['falabella', 'paris', 'lider-supermercado'], 'retails supported: falabella, paris and lider-supermercado as argv'
     # import df
     df = pd.read_csv(f'df_promos_retail_{argv[1]}.csv', index_col=0)
     print(df)
@@ -30,7 +30,7 @@ def main(argv):
     start = time.time()
     df['promo_analysis'] = df['url_img'].apply(lambda row: analyze_promo_v2(row))
     # json to cols
-    df['promocion'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='promocion'))
+    df['descripcion_promo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='promocion'))
     df['publico_objetivo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='publico_objetivo'))
     df['categorias_en_promo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='categorias_en_promo'))
     df['marcas_en_promo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='marcas_en_promo'))
