@@ -17,7 +17,7 @@ st.set_page_config(
     layout="wide",
 )
 
-add_logo("https://images.datacamp.com/image/upload/v1640050215/image27_frqkzv.png", height=10)
+add_logo("https://www.python.org/static/community_logos/python-powered-w-100x40.png", height=1)
 st.title(':robot_face: Analista de  Promociones')
 st.text('Experto en extraer info de anuncios')
 

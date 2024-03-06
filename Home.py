@@ -10,7 +10,7 @@ st.set_page_config(
     page_icon=":robot_face:",
     layout="wide",
 )
-add_logo("https://images.datacamp.com/image/upload/v1640050215/image27_frqkzv.png", height=10)
+add_logo("https://www.python.org/static/community_logos/python-powered-w-100x40.png", height=1)
 st.title(':wrench: Dashboard & LLMs Tests :wrench:')
 
 uploaded_file = st.file_uploader("Seleccione un archivo CSV para analizar", type="csv")
