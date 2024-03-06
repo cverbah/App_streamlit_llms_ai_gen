@@ -6,7 +6,7 @@ import time
 from utils import search_google_trends #import SERPAPI_API_KEY,
 from streamlit_extras.app_logo import add_logo
 
-add_logo("https://geti.cl/public/img/geti-header-logo.webp", height=10)
+add_logo("https://images.datacamp.com/image/upload/v1640050215/image27_frqkzv.png", height=10)
 st.title('Analista de Google Trends')
 
 # Input keyword from user

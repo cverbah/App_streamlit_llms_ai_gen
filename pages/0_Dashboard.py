@@ -14,7 +14,7 @@ st.set_page_config(
     page_icon="	:gear:",
     layout="wide",
 )
-add_logo("https://geti.cl/public/img/geti-header-logo.webp", height=10)
+add_logo("https://images.datacamp.com/image/upload/v1640050215/image27_frqkzv.png", height=10)
 st.title('Dashboard: #Todo')
 try:
     with st.spinner('Cargando datos...'):
