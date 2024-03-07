@@ -385,10 +385,6 @@ def main(argv, get_data=False):
     if argv[1] == 'jumbo':
         aux = 5
         url = 'https://www.jumbo.cl/'
-        scroll_increment = 5
-        scroll_delay = 1.5
-        increment_speed_up = 150
-        delay_speed_up = 1
         lazy_type = 2
 
     # driver setup
