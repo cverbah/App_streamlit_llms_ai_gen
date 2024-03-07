@@ -24,7 +24,7 @@ def get_promo_data(row, key):
 def main(argv):
     assert argv[1] in ['falabella', 'paris', 'lider-supermercado'], 'retails supported: falabella, paris and lider-supermercado as argv'
     # import df
-    df = pd.read_csv(f'df_promos_retail_{argv[1]}.csv', index_col=0)
+    df = pd.read_csv(f'./data_retails/promos_home/df_promos_retail_{argv[1]}.csv', index_col=0)
     print(df)
     print('analyzing...')
     start = time.time()
@@ -39,7 +39,7 @@ def main(argv):
     df['cupon_app'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='cupon_app'))
     df['promociones_envio'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='promociones_envio'))
     df.drop(columns='promo_analysis', inplace=True)
-    df.to_csv(f'df_promos_retail_analysis_{argv[1]}.csv')
+    df.to_csv(f'./data_retails/promos_home_analysis/df_promos_retail_analysis_{argv[1]}.csv')
     total = round(time.time() - start,2)
     print(f'time taken: {total} secs')
 

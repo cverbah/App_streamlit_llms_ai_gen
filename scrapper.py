@@ -335,7 +335,7 @@ def main(argv, get_data=True):
             df_imgs = df_imgs.drop_duplicates().reset_index(drop=True)  # filter out
             df_imgs['datetime_checked'] = pd.to_datetime('today')
             print(df_imgs.head(10))
-            df_imgs.to_csv(f'df_promos_retail_{argv[1]}.csv')
+            df_imgs.to_csv(f'./data_retails/promos_home/df_promos_retail_{argv[1]}.csv')
 
     except Exception as e:
         print(e)
