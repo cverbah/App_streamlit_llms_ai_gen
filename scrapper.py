@@ -6,6 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
 import pandas as pd
 import time
@@ -40,6 +41,32 @@ def scroll_all_website(driver, scroll_increment=100, scroll_delay=0.25,
             scroll_delay = delay_speed_up
 
 
+def scroll_all_website_jumbo(driver, scroll_delay=0.7, start_delay=80):
+    popup = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.CLASS_NAME, 'popover-delivery-close')))
+    popup.click()
+
+    body = driver.find_element(By.TAG_NAME, "body")
+    page_height = int(driver.execute_script("return document.body.scrollHeight")) # not reliable
+    if page_height > 6500:
+        aux = 30
+    elif 4000 < page_height <= 6500:
+        aux = 25
+    elif page_height <= 4000:
+        aux = 15
+
+    print(f'page length: {page_height}')
+    current_position = 0
+    time.sleep(start_delay)
+    while current_position < page_height:
+        body.send_keys(Keys.DOWN)
+        time.sleep(scroll_delay)
+
+        current_position += aux
+        scanned = round(current_position / page_height, 2)
+        print(f'aux scanned: {scanned:.2%}')
+
+
+
 def save_promo(name, tipo_oferta, pos, img_url):
     data = {}
     data['nombre_promocion'] = unidecode(name)
@@ -47,6 +74,12 @@ def save_promo(name, tipo_oferta, pos, img_url):
     data['posicion'] = pos
     data['url_img'] = img_url
     return data
+
+
+## jumbo
+
+## por hacer
+
 
 ## lider - catalogo (potencialmente identico a supermercado. Por ahora voy a separarlos
 def has_specific_class_and_attribute_top_banner_lider_catalogo(tag, class_match='banners-home', attribute='id', attribute_match='home-banner-'):
@@ -308,7 +341,7 @@ def flag_blacklist(row, blacklist=blacklist):
       return row
 
 
-def main(argv, get_data=True):
+def main(argv, get_data=False):
     ''''testing: get promotions and discounts images from home site'''
     assert argv[1] in ['falabella', 'paris', 'lider-supermercado', 'lider-catalogo', 'jumbo'],\
         'retails supported: falabella, paris, lider-supermercado, lider-catalogo, jumbo as argv'
@@ -320,6 +353,7 @@ def main(argv, get_data=True):
         scroll_delay = 1
         increment_speed_up = 300
         delay_speed_up = 1
+        lazy_type = 1
 
     if argv[1] == 'paris':
         aux = 2
@@ -328,6 +362,7 @@ def main(argv, get_data=True):
         scroll_delay = 1
         increment_speed_up = 300
         delay_speed_up = 1
+        lazy_type = 1
 
     if argv[1] == 'lider-supermercado':
         aux = 3
@@ -336,6 +371,7 @@ def main(argv, get_data=True):
         scroll_delay = 1.5
         increment_speed_up = 300
         delay_speed_up = 1
+        lazy_type = 1
 
     if argv[1] == 'lider-catalogo':
         aux = 4
@@ -344,14 +380,16 @@ def main(argv, get_data=True):
         scroll_delay = 1.5
         increment_speed_up = 150
         delay_speed_up = 1
+        lazy_type = 1
 
     if argv[1] == 'jumbo':
         aux = 5
-        url = 'https://www.lider.cl/catalogo/'
+        url = 'https://www.jumbo.cl/'
         scroll_increment = 5
         scroll_delay = 1.5
         increment_speed_up = 150
         delay_speed_up = 1
+        lazy_type = 2
 
     # driver setup
     options = webdriver.ChromeOptions()
@@ -363,8 +401,11 @@ def main(argv, get_data=True):
         driver.get(url)
         time.sleep(2)
 
-        scroll_all_website(driver, scroll_increment=scroll_increment, scroll_delay=scroll_delay,
-                           increment_speed_up=increment_speed_up, delay_speed_up=delay_speed_up)
+        if lazy_type == 1:
+            scroll_all_website(driver, scroll_increment=scroll_increment, scroll_delay=scroll_delay,
+                               increment_speed_up=increment_speed_up, delay_speed_up=delay_speed_up)
+        if lazy_type == 2:
+            scroll_all_website_jumbo(driver)
 
         # get code with lazyload-wrappers imgs loaded
         website_code = driver.page_source
