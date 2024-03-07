@@ -22,7 +22,8 @@ def get_promo_data(row, key):
         return np.nan
 
 def main(argv):
-    assert argv[1] in ['falabella', 'paris', 'lider-supermercado'], 'retails supported: falabella, paris and lider-supermercado as argv'
+    assert argv[1] in ['falabella', 'paris', 'lider-supermercado', 'lider-catalogo', 'jumbo'],\
+        'retails supported: falabella, paris, lider-supermercado, lider-catalogo, jumbo as argv'
     # import df
     df = pd.read_csv(f'./data_retails/promos_home/df_promos_retail_{argv[1]}.csv', index_col=0)
     print(df)
