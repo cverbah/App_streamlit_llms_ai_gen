@@ -9,7 +9,7 @@ import sys
 
 def get_promo_data(row, key):
     assert key in ['index', 'categorias_en_promo', 'marcas_en_promo', 'cuotas_sin_interes', 'cupon_app', 'promociones_envio',
-                   'publico_objetivo', 'promocion', 'productos_en_oferta'], 'wrong key'
+                   'publico_objetivo', 'promocion', 'productos_en_oferta', 'duracion_promo'], 'wrong key'
 
     if row == 'img loading problem':
         return np.nan
@@ -32,6 +32,7 @@ def main(argv):
     df['promo_analysis'] = df['url_img'].apply(lambda row: analyze_promo_v2(row))
     # json to cols
     df['descripcion_promo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='promocion'))
+    df['duracion_promo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='duracion_promo'))
     df['publico_objetivo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='publico_objetivo'))
     df['categorias_en_promo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='categorias_en_promo'))
     df['marcas_en_promo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='marcas_en_promo'))

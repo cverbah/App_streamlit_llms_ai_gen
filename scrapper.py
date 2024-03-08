@@ -89,6 +89,7 @@ def get_top_banner_promos_jumbo(soup, tipo_oferta='ofertas_principales'):
             data.append(promo)
 
     df = pd.DataFrame(data)
+    df = df.drop_duplicates().reset_index(drop=True)
     return df
 
 
@@ -113,6 +114,7 @@ def get_secondary_promos_jumbo(soup):
         data.append(promo)
 
     df = pd.DataFrame(data)
+    df = df.drop_duplicates().reset_index(drop=True)
     return df
 
 
@@ -139,6 +141,7 @@ def get_bottom_offers_jumbo(soup, tipo_oferta='ofertas_final_pag'):
             data.append(promo)
 
         df = pd.DataFrame(data)
+        df = df.drop_duplicates().reset_index(drop=True)
     return df
 
 
@@ -222,9 +225,9 @@ def get_bottom_offers_lider_catalogo(soup, tipo_oferta='ofertas_final_pag'):
         promo = save_promo(name, tipo_oferta, pos, img_url)
         data.append(promo)
 
-    df = pd.DataFrame(data)
+    df = pd.DataFrame(data).drop_duplicates()
+    df = df.sort_values(by='posicion').reset_index(drop=True)
     return df
-
 
 
 ## lider - supermarket scrapping
@@ -276,7 +279,7 @@ def get_grid_promos_lider_supermarket(soup, tipo_oferta='grid_ofertas'):
         data.append(promo)
 
     df = pd.DataFrame(data).drop_duplicates()
-    df = df.sort_values(by='posicion').reset_index(drop=True)
+    df = df.reset_index(drop=True)
     return df
 
 
@@ -301,7 +304,8 @@ def get_bottom_offers_lider_supermarket(soup, tipo_oferta='ofertas_final_pag'):
         promo = save_promo(name, tipo_oferta, pos, img_url)
         data.append(promo)
 
-    df = pd.DataFrame(data)
+    df = pd.DataFrame(data).drop_duplicates()
+    df = df.reset_index(drop=True)
     return df
 
 
@@ -315,7 +319,8 @@ def get_top_banner_promos_paris(soup, tipo_oferta='ofertas_principales', class_t
             img_url = element.find('source').get('srcset')
             promo = save_promo(name, tipo_oferta, pos, img_url)
             data.append(promo)
-    df = pd.DataFrame(data)
+    df = pd.DataFrame(data).drop_duplicates()
+    df = df.reset_index(drop=True)
     return df
 
 
@@ -330,7 +335,8 @@ def get_grid_promos_paris(soup, tipo_oferta='grid_ofertas', class_tag="cursor-po
             promo = save_promo(name, tipo_oferta, pos, img_url)
             data.append(promo)
             pos += 1
-    df = pd.DataFrame(data)
+    df = pd.DataFrame(data).drop_duplicates()
+    df = df.reset_index(drop=True)
     return df
 
 
@@ -351,7 +357,8 @@ def get_bottom_carousel_paris(soup, tipo_oferta='lo_ultimo'):
             promo = save_promo(name, tipo_oferta, position, img_url)
             data.append(promo)
             position += 1
-    df = pd.DataFrame(data)
+    df = pd.DataFrame(data).drop_duplicates()
+    df = df.reset_index(drop=True)
     return df
 
 ## falabella scrapping
@@ -387,7 +394,7 @@ def get_df_with_imgs(all_sections: list):
                 promo = save_promo(name, tipo_oferta, pos, img_url)
                 data.append(promo)
 
-    df = pd.DataFrame(data)
+    df = pd.DataFrame(data).drop_duplicates()
     return df
 
 

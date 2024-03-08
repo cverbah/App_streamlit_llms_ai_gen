@@ -130,26 +130,34 @@ def analyze_promo_v2(image_path, format=True, model=gcp_model_vision):
     '''' just testing for now : same example from gcp'''
 
     instructions = "Instrucciones: Las siguientes imágenes contienen promociones de retails, extrae información de las promociones.Solo usa la información" \
-                   "disponible en las imágenes."
-    prompt1 = """
+                   "disponible en las imágenes. Siempre respondes en español y en minúsculas."
+    prompt = """
     Extrae la información siguiendo estos pasos y guardando la información en un archivo json siguiendo la siguiente estructura:
     [{'index': indice de imágen partiendo con 1}]
     Paso 1: Analiza las ofertas y promociones de manera general presentes en cada imágen, respondiendo las siguientes preguntas,
     agregando los datos al archivo json:\
     'categorias_en_promo': Sobre qué categorías trata la promoción? Usa siempre 3 palabaras claves y almacénalas en una lista.  
     'marcas_en_promo': Qué marcas están con promoción? Almacena todas las marcas detectadas en una lista. Si no hay, devuelve null.
-    'cuotas_sin_interes': Es posible comprar en cuotas sin interés? Si es que sí, cuantas cuotas? Si no detectas la palabra cuota, devuelve null.
+    'duracion_promo': [{'fecha_inicio_promo': fecha inicio promoción con el siguiente formato de fecha: dd/mm/aaaa,
+                        'fecha_termino_promo: fecha termino promoción con el siguiente formato de fecha: dd/mm/aaaa,
+                        'dias_duracion': días que dura la promoción con formato: int}]. Si no hay fechas, devuelve null.
+    'cuotas_sin_interes': Es posible comprar en cuotas sin interés? Si es que sí, cuantas cuotas? en formato: int. Si no detectas la palabra cuota, devuelve null.
     'cupon_app': Hay cupones de descuento usando sólo la app del retail? Si es que hay, extrae la información. Si no hay, devuelve null.
     'promociones_envio': Hay promociones para el envío?  Si es que hay, describe la promoción. Si no hay, devuelve null.
-    'publico_objetivo': Cual crees que es el público objetivo de esta promoción? Haz una breve descripción.
-    [{'promocion': analisis del paso 1 y de la promoción principal de la imágen}]
-    Paso 2: Identifica cuantos productos con precios con descuentos hay en la imagen, mostrando el precio sin y con descuento. Si no sale el precio de cada producto de forma explícita, no guardes la información.
+    'publico_objetivo': Cual crees que es el público objetivo de esta promoción?
+                        Devuelve 5 adjetivos calificativos del público objetivo  y almacénalas en una lista. Usa 1 palabra para representar cada característica.
+    [{'promocion': analisis del paso 1 y de la promoción principal de la imágen. Nunca inventes datos si no aparecen en la imágen.}]
+    Paso 2: Identifica cuantos productos con precios con descuentos hay en la imagen, mostrando el precio sin y con descuento.
+            Si no sale el precio de cada producto de forma explícita, no guardes la información.
     Paso 3: Extra la información de cada producto siempre y cuando tenga descuentos y agregala al archivo json siguiendo la siguiente estructura:\
-    ['productos_en_oferta': [{'nombre_del_producto': nombre completo del producto, 'precio_normal': precio normal, 'precio_oferta': precio oferta,\
-    'descuento': descuento formateado con porcentaje]}]
+    ['productos_en_oferta': [{'nombre_del_producto': nombre completo del producto,
+                              'precio_normal': precio normal,
+                              'precio_oferta': precio oferta,
+                              'descuento': descuento formateado con porcentaje]}]
     Si no logras detectar productos específicos con precios con descuento en la imagen, devuelve la lista vacía.
+    Considera siempre todos los 0 en los precios de los productos.
     Paso 4: Si no es posible extraer ciertos datos de la imagen, guardar el dato como null
-    Paso 5: Formatea el archivo
+    Paso 5: Formatea el archivo. Elimina caractéres especiales si es necesario.
     """
     try:
         message = HumanMessage(
@@ -160,10 +168,8 @@ def analyze_promo_v2(image_path, format=True, model=gcp_model_vision):
                 },
                 {"type": "image_url",
                  "image_url": image_path},
-                # {"type": "image_url",          #Desactivado multi img por ahora. Funciona
-                # "image_url": image_path2},
                 {"type": "text",
-                 "text": prompt1},
+                 "text": prompt},
             ]
         )
         response = model.invoke([message]).content
