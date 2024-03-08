@@ -77,8 +77,69 @@ def save_promo(name, tipo_oferta, pos, img_url):
 
 
 ## jumbo
+def get_top_banner_promos_jumbo(soup, tipo_oferta='ofertas_principales'):
+    top_banner = soup.find_all("a", {"class": 'new-home-hero-sliderv2-link'})
+    data = []
+    for pos, element in enumerate(top_banner, start=1):
+        if element.picture:
+            name = str(element.picture.find('img').get('alt')).lower()
+            formatted_name = '-'.join(name.split('-')[:2])
+            img_url = element.picture.find('img').get('src')
+            promo = save_promo(formatted_name, tipo_oferta, pos, img_url)
+            data.append(promo)
 
-## por hacer
+    df = pd.DataFrame(data)
+    return df
+
+
+def get_secondary_promos_jumbo(soup):
+    timer_banner = soup.find_all("div", {"class": 'banner-timer-image'})
+    categories_banners = soup.find_all("div", {"class": "section-banner-categories"})
+    left_side = categories_banners[0].find_all("div", {"class": 'banner-categories-left'})
+    right_side = categories_banners[0].find_all("div", {"class": 'banner-categories-right'})
+    imgs_right = right_side[0].find_all("a", {"class": 'double-image-content'})
+    shorts_banner_top = soup.find_all("section", {"class":"short-banner"})[:2]
+
+    all_sections = [timer_banner, left_side, imgs_right, shorts_banner_top]
+    all_sections = [i for sublist in all_sections for i in sublist] #flatten
+    data = []
+    for pos, element in enumerate(all_sections, start=1):
+
+        name = str(element.find('img').get('alt')).lower()
+        formatted_name = '-'.join(name.split('-')[:2])
+        img_url = element.find('img').get('src')
+        tipo_oferta = element.get('class')[0]
+        promo = save_promo(formatted_name, tipo_oferta, pos, img_url)
+        data.append(promo)
+
+    df = pd.DataFrame(data)
+    return df
+
+
+def get_bottom_offers_jumbo(soup, tipo_oferta='ofertas_final_pag'):
+    bottom_long_banners = soup.find_all("section", {"class": "short-banner"})[2:]
+    bottom_carousel = soup.find_all("div", {"class": "slider-banner-offers-wrap-v2"})
+    bottom_categories_banners = soup.find_all("div", {"class": "section-banner-categories"})[2]
+    bottom_left_side = bottom_categories_banners.find_all("div", {"class": 'banner-categories-left'})
+    bottom_right_side = bottom_categories_banners.find_all("div", {"class": 'banner-categories-right'})
+    bottom_promos = soup.find_all("a", {"class": "slider-banner-products-wrap"})
+
+    all_sections = [bottom_long_banners, bottom_carousel, bottom_left_side, bottom_right_side, bottom_promos]
+    all_sections = [i for sublist in all_sections for i in sublist]  # flatten
+    data = []
+    position = 0
+    for banner in all_sections:
+        imgs = banner.find_all('img')
+        for pos, element in enumerate(imgs, start=1):
+            name = element.get('alt').lower()
+            formatted_name = '-'.join(name.split('-')[:2])
+            img_url = element.get('src')
+            position += 1
+            promo = save_promo(formatted_name, tipo_oferta, position, img_url)
+            data.append(promo)
+
+        df = pd.DataFrame(data)
+    return df
 
 
 ## lider - catalogo (potencialmente identico a supermercado. Por ahora voy a separarlos
@@ -144,7 +205,7 @@ def has_specific_class_bottom_highlighted_lider_catalogo(tag, class_match='Campa
     return (tag.has_attr('class') and any(class_match in cls for cls in tag['class']))
 
 
-def get_lowest_offers_lider_catalogo(soup, tipo_oferta='ofertas_final_pag'):
+def get_bottom_offers_lider_catalogo(soup, tipo_oferta='ofertas_final_pag'):
 
     bottom_offers = soup.find_all(has_specific_class_bottom_offers_lider_catalogo)
     destacados_lider = soup.find_all(has_specific_class_bottom_highlighted_lider_catalogo)
@@ -227,7 +288,7 @@ def has_specific_class_bottom_highlighted_lider_supermarket(tag, class_match='Ca
     return (tag.has_attr('class') and any(class_match in cls for cls in tag['class']))
 
 
-def get_lowest_offers_lider_supermarket(soup, tipo_oferta='ofertas_final_pag'):
+def get_bottom_offers_lider_supermarket(soup, tipo_oferta='ofertas_final_pag'):
     bottom_offers = soup.find_all(has_specific_class_bottom_offers_lider_supermarket)
     destacados_lider = soup.find_all(has_specific_class_bottom_highlighted_lider_supermarket)
 
@@ -278,7 +339,7 @@ def has_specific_class_and_attribute_lowest_carousel_paris(tag, class_match='spl
            (tag.has_attr(attribute) and attribute_match in tag[attribute])
 
 
-def get_lowest_carousel_paris(soup, tipo_oferta='lo_ultimo'):
+def get_bottom_carousel_paris(soup, tipo_oferta='lo_ultimo'):
     lowest_carousel = soup.find_all(has_specific_class_and_attribute_lowest_carousel_paris)
     data = []
     position = 1
@@ -341,7 +402,7 @@ def flag_blacklist(row, blacklist=blacklist):
       return row
 
 
-def main(argv, get_data=False):
+def main(argv, get_data=True):
     ''''testing: get promotions and discounts images from home site'''
     assert argv[1] in ['falabella', 'paris', 'lider-supermercado', 'lider-catalogo', 'jumbo'],\
         'retails supported: falabella, paris, lider-supermercado, lider-catalogo, jumbo as argv'
@@ -410,7 +471,6 @@ def main(argv, get_data=False):
         driver.quit()
 
         soup = BeautifulSoup(website_code, 'html.parser')
-        #print(soup.prettify()) #for developing
         if get_data:
             if aux == 1:  # falabella
                 top_banner = soup.find_all(has_specific_class_and_attribute_top_banner)
@@ -424,29 +484,34 @@ def main(argv, get_data=False):
             if aux == 2:  # paris
                 top_banner = get_top_banner_promos_paris(soup, tipo_oferta='ofertas_principales', class_tag="flex-none rounded-lg relative")
                 grid = get_grid_promos_paris(soup, tipo_oferta='grid_ofertas', class_tag="cursor-pointer relative")
-                lowest_carousel = get_lowest_carousel_paris(soup, tipo_oferta='lo_ultimo')
+                bottom_carousel = get_bottom_carousel_paris(soup, tipo_oferta='lo_ultimo')
 
-                df_imgs = pd.concat([top_banner, grid, lowest_carousel])
+                df_imgs = pd.concat([top_banner, grid, bottom_carousel])
                 df_imgs = df_imgs.reset_index(drop=True)
 
-            if aux == 3:  # lider supermercados
+            if aux == 3:  # lider-supermercados
                 top_banner = get_top_banner_promos_lider_supermarket(soup, tipo_oferta='ofertas_principales')
                 grid = get_grid_promos_lider_supermarket(soup, tipo_oferta='grid_ofertas')
-                lowest_offers = get_lowest_offers_lider_supermarket(soup, tipo_oferta='ofertas_final_pag')
+                bottom_offers = get_bottom_offers_lider_supermarket(soup, tipo_oferta='ofertas_final_pag')
 
-                df_imgs = pd.concat([top_banner, grid, lowest_offers])
+                df_imgs = pd.concat([top_banner, grid, bottom_offers])
                 df_imgs = df_imgs.reset_index(drop=True)
 
-            if aux == 4:  # lider catalogo
+            if aux == 4:  # lider-catalogo
                 top_banner = get_top_banner_promos_lider_catalogo(soup, tipo_oferta='ofertas_principales')
                 grid = get_grid_promos_lider_catalogo(soup, tipo_oferta='grid_ofertas')
-                lowest_offers = get_lowest_offers_lider_catalogo(soup, tipo_oferta='ofertas_final_pag')
+                bottom_offers = get_bottom_offers_lider_catalogo(soup, tipo_oferta='ofertas_final_pag')
 
-                df_imgs = pd.concat([top_banner, grid, lowest_offers])
+                df_imgs = pd.concat([top_banner, grid, bottom_offers])
                 df_imgs = df_imgs.reset_index(drop=True)
 
             if aux == 5:  # jumbo
-                pass
+                top_banner = get_top_banner_promos_jumbo(soup, tipo_oferta='ofertas_principales')
+                secondary_promos = get_secondary_promos_jumbo(soup)
+                bottom_offers = get_bottom_offers_jumbo(soup, tipo_oferta='ofertas_final_pag')
+
+                df_imgs = pd.concat([top_banner, secondary_promos, bottom_offers])
+                df_imgs = df_imgs.reset_index(drop=True)
 
 
             df_imgs['nombre_promocion'] = df_imgs['nombre_promocion'].apply(lambda row: flag_blacklist(row))
