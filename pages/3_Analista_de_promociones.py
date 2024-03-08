@@ -19,7 +19,7 @@ st.set_page_config(
 
 add_logo("https://www.python.org/static/community_logos/python-powered-w-100x40.png", height=1)
 st.title(':robot_face: Analista de  Promociones')
-st.text('Experto en extraer info de anuncios')
+st.text('Experto en extraer info de anuncios {por ahora funcionando solo con falabella.. under construction.')
 
 try:
     with st.spinner('Cargando datos...'):
