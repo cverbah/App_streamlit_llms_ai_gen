@@ -5,6 +5,7 @@ from utils import analyze_promo_v2
 import time
 import json
 import sys
+import re
 
 
 def get_promo_data(row, key):
@@ -21,6 +22,25 @@ def get_promo_data(row, key):
     if row_dict == np.nan or row_dict == None:
         return np.nan
 
+
+def extract_discount(string):
+    pattern = r'\b\d+(?:\.\d+)?%'
+    discounts = re.findall(pattern, string)
+    if discounts:
+
+        discounts_float = list(map(lambda d: float(d.strip('%')) / 100, discounts))
+        return discounts_float[0] #por ahora entrega el primero que encuentra
+    else:
+        return np.nan
+
+
+def format_as_percentage(value):
+    if pd.isnull(value):
+        return np.nan
+    else:
+        return f"{value:.0%}"
+
+
 def main(argv):
     assert argv[1] in ['falabella', 'paris', 'lider-supermercado', 'lider-catalogo', 'jumbo'],\
         'retails supported: falabella, paris, lider-supermercado, lider-catalogo, jumbo as argv'
@@ -33,9 +53,11 @@ def main(argv):
     # json to cols
     df['descripcion_promo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='promocion'))
     df['duracion_promo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='duracion_promo'))
-    df['publico_objetivo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='publico_objetivo'))
+    df['descuentos_promo'] = df['descripcion_promo'].apply(lambda row: extract_discount(str(row)))
+    df['descuentos_promo'] = df['descuentos_promo'].apply(lambda row: format_as_percentage(row))
     df['categorias_en_promo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='categorias_en_promo'))
     df['marcas_en_promo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='marcas_en_promo'))
+    df['publico_objetivo'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='publico_objetivo'))
     df['productos_en_oferta'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='productos_en_oferta'))
     df['cuotas_sin_interes'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='cuotas_sin_interes'))
     df['cupon_app'] = df['promo_analysis'].apply(lambda row: get_promo_data(row, key='cupon_app'))
