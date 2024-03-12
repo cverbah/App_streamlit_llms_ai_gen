@@ -52,10 +52,11 @@ if uploaded_img:
                 st.success('Ok!')
 
             st.header(':robot_face: Analista Experto 2')
-            with st.spinner('Pensando...'):
-                response = analyze_image(image_path, model=gcp_model_vision, analyst_type=2)
-                st.write(response)
-                st.success('Ok!')
+            st.write('pass')
+            #with st.spinner('Pensando...'):
+                #response = analyze_image(image_path, model=gcp_model_vision, analyst_type=2)
+                #st.write(response)
+                #st.success('Ok!')
 
             st.header(':robot_face: Data Extractor:')
             with st.spinner('Pensando...'):

@@ -17,14 +17,16 @@ try:
     col1, col2 = st.columns(2, gap='large')
     with col1:
         st.subheader('Google Trends Data Wrapper')
-        tool = GoogleTrendsQueryRun(api_wrapper=GoogleTrendsAPIWrapper())
-        response = tool.run(keyword)
-        st.write(response)
+        with st.spinner('Pensando...'):
+            tool = GoogleTrendsQueryRun(api_wrapper=GoogleTrendsAPIWrapper())
+            response = tool.run(keyword)
+            st.write(response)
 
     with col2:
         st.subheader('Google Trends SerpAPI')
-        response = search_google_trends(keyword)
-        st.write(response)
+        with st.spinner('Pensando...'):
+            response = search_google_trends(keyword)
+            st.write(response)
 
 except Exception as e:
     st.error(e)

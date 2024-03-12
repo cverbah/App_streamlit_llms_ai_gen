@@ -209,8 +209,8 @@ def analyze_image(image_path, model=gcp_model_vision, analyst_type=1):
     if analyst_type:
         prompt = 'Que puedes decir acerca de la imágen? Se específico y detallado. Siempre respondes en español.'
 
-    if analyst_type == 2:
-        prompt = 'Haz un análisis del siguiente gráfico o tabla. Actúa como un experto en ciencia de datos. Siempre respondes en español.'
+    #if analyst_type == 2:
+    #    prompt = 'Haz un análisis del siguiente gráfico o tabla. Actúa como un experto en ciencia de datos. Siempre respondes en español.'
 
     if analyst_type == 3:
         prompt = 'Extract all the relevant data from the the image and return it with a json format. Only use the data from the image.'

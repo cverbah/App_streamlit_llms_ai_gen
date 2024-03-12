@@ -38,7 +38,7 @@ if len(df) > 0:
         try:
             df_op = df[df.tipo_oferta == 'ofertas_principales']
             #img_data = list(zip(df_op['url_img'], df_op['position'], df_op['name_img']))
-            img_data = list(zip(df_op['position'], df_op['promocion'], df_op['categorias_en_promo'], df_op['publico_objetivo']))
+            img_data = list(zip(df_op['posicion'], df_op['nombre_promocion'], df_op['categorias_en_promo'], df_op['publico_objetivo']))
             with st.spinner('Pensando...'):
                 response = analyze_promo_v4(img_data, promo_type='promociones principales', format=False, model=gcp_model_txt)
                 st.write(response)
@@ -51,7 +51,7 @@ if len(df) > 0:
         st.header(':magic_wand: Análisis grid de ofertas')
         try:
             df_og = df[df.tipo_oferta == 'grid_ofertas']
-            img_data = list(zip(df_og['position'], df_og['promocion'], df_og['categorias_en_promo'], df_og['publico_objetivo']))
+            img_data = list(zip(df_og['posicion'], df_og['nombre_promocion'], df_og['categorias_en_promo'], df_og['publico_objetivo']))
             with st.spinner('Pensando...'):
                 response = analyze_promo_v4(img_data, promo_type='promociones secundarias', format=False, model=gcp_model_txt)
                 st.write(response)
@@ -65,7 +65,7 @@ if len(df) > 0:
         st.header(':magic_wand: Análisis de lo último')
         try:
             df_lu = df[df.tipo_oferta == 'lo_ultimo']
-            img_data = list(zip(df_lu['url_img'], df_lu['position'], df_lu['name_img']))
+            img_data = list(zip(df_lu['url_img'], df_lu['posicion'], df_lu['nombre_promocion']))
             with st.spinner('Pensando...'):
                 response = analyze_promo_v3(img_data, promo_type='lo más visto', format=True, model=gcp_model_vision)
                 st.write(response)

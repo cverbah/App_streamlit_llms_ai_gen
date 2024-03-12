@@ -14,7 +14,7 @@ st.set_page_config(
     page_icon="	:gear:",
     layout="wide",
 )
-add_logo("https://images.datacamp.com/image/upload/v1640050215/image27_frqkzv.png", height=10)
+add_logo("https://www.python.org/static/community_logos/python-powered-w-100x40.png", height=1)
 st.title('Dashboard: #Todo')
 try:
     with st.spinner('Cargando datos...'):
@@ -27,10 +27,10 @@ with st.sidebar:
     st.title('Dashboard')
 
     #state
-    state = df['estado'].unique().tolist()
-    select_state = st.selectbox('Seleccione estado', state, index=len(state) - 1)
-    if select_state:
-        df_filtered = df[df.estado == select_state].reset_index(drop=True)
+    state = df['tipo_oferta'].unique().tolist()
+    select_offer = st.selectbox('Seleccione el tipo de oferta', state, index=len(state) - 1)
+    if select_offer:
+        df_filtered = df[df.tipo_oferta == select_offer].reset_index(drop=True)
 
 # Dashboard Main Panel
 col1, col2, col3 = st.columns(3, gap='medium')
