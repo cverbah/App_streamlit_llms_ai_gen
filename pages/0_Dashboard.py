@@ -1,13 +1,14 @@
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 import matplotlib
-import seaborn as sns
-matplotlib.use('tkagg')
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 from PIL import Image
 import os
 import streamlit as st
 from streamlit_extras.app_logo import add_logo
+from utils_plots import plot_wordcloud, plot_against_offer_type
+from streamlit_carousel import carousel
 
 st.set_page_config(
     page_title="Dashboard Testing",
@@ -15,7 +16,7 @@ st.set_page_config(
     layout="wide",
 )
 add_logo("https://www.python.org/static/community_logos/python-powered-w-100x40.png", height=1)
-st.title('Dashboard: #Todo')
+st.title(':construction: Dashboard: :construction:')
 try:
     with st.spinner('Cargando datos...'):
         df = st.session_state.df
@@ -26,21 +27,42 @@ except Exception as e:
 with st.sidebar:
     st.title('Dashboard')
 
-    #state
-    state = df['tipo_oferta'].unique().tolist()
-    select_offer = st.selectbox('Seleccione el tipo de oferta', state, index=len(state) - 1)
+    offer_type = df['tipo_oferta'].unique().tolist()
+    offer_type.extend(['todas'])
+    select_offer = st.selectbox('Seleccione el tipo de oferta', offer_type, index=len(offer_type) - 1)
     if select_offer:
-        df_filtered = df[df.tipo_oferta == select_offer].reset_index(drop=True)
+        if select_offer != 'todas':
+            df_filtered = df[df.tipo_oferta == select_offer].reset_index(drop=True)
+        else:
+            df_filtered = df
+try:
+    # Dashboard Main Panel
+    col1, col2 = st.columns((0.2, 0.8), gap='small')
+    with col1:
+        st.subheader('pass')
+    with col2:
+        with st.spinner('Cargando datos...'):
+            items_carousel = [dict(title='', text=desc, img=img) for name, desc, img in
+                              list(zip(df_filtered['nombre_promocion'].tolist(), df_filtered['descripcion_promo'].tolist(), df_filtered['url_img'].tolist()))]
+            items_carousel[0]['interval'] = None
+            carousel(items=items_carousel, width=1, height=200)
 
-# Dashboard Main Panel
-col1, col2, col3 = st.columns(3, gap='medium')
-with col1:
-    st.write('todo')
 
-with col2:
-    st.write('todo')
+        st.subheader("DataFrame Filtrado:")
+        st.dataframe(df_filtered)
 
-with col3:
-    st.write('todo')
+    col_types = ['categorias_en_promo', 'marcas_en_promo', 'publico_objetivo']
+    df_col = st.selectbox('Seleccione columna', col_types, index=len(col_types) - 1)
+    col3, col4 = st.columns(2, gap='medium')
+    with col3:
+        st.subheader('Word Clouds')
+        fig = plot_wordcloud(df_filtered, df_col, color='white', max_words=20)
+        st.pyplot(fig)
 
+    with col4:
+        st.subheader(f'Cuenta de: {df_col}')
+        fig = plot_against_offer_type(df_filtered, df_col, top=10)
+        st.plotly_chart(fig, theme="streamlit")
 
+except Exception as e:
+    st.error(e)
