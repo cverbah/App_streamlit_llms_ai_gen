@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import datetime
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -20,6 +21,8 @@ st.title(':construction: Dashboard: :construction:')
 try:
     with st.spinner('Cargando datos...'):
         df = st.session_state.df
+        df_datetime = df.loc[0, 'datetime_checked']
+        df_datetime = df_datetime.strftime("%d-%m-%Y")
 
 except Exception as e:
     st.error(e)
@@ -33,13 +36,16 @@ with st.sidebar:
     if select_offer:
         if select_offer != 'todas':
             df_filtered = df[df.tipo_oferta == select_offer].reset_index(drop=True)
+
+            df_filtered.drop(columns=['datetime_checked'], inplace=True)
         else:
             df_filtered = df
 try:
     # Dashboard Main Panel
     col1, col2 = st.columns((0.2, 0.8), gap='small')
     with col1:
-        st.subheader('pass')
+        st.subheader('Fecha extracción:')
+        st.write(df_datetime, )
     with col2:
         with st.spinner('Cargando datos...'):
             items_carousel = [dict(title='', text=desc, img=img) for name, desc, img in
@@ -55,14 +61,16 @@ try:
     df_col = st.selectbox('Seleccione columna', col_types, index=len(col_types) - 1)
     col3, col4 = st.columns(2, gap='medium')
     with col3:
-        st.subheader('Word Clouds')
-        fig = plot_wordcloud(df_filtered, df_col, color='white', max_words=20)
-        st.pyplot(fig)
+        with st.spinner('Cargando gráficos...'):
+            st.subheader('Word Clouds')
+            fig = plot_wordcloud(df_filtered, df_col, color='white', max_words=20)
+            st.pyplot(fig)
 
     with col4:
-        st.subheader(f'Cuenta de: {df_col}')
-        fig = plot_against_offer_type(df_filtered, df_col, top=10)
-        st.plotly_chart(fig, theme="streamlit")
+        with st.spinner('Cargando gráficos...'):
+            st.subheader(f'Cuenta de: {df_col}')
+            fig = plot_against_offer_type(df_filtered, df_col, top=10)
+            st.plotly_chart(fig, theme="streamlit")
 
 except Exception as e:
     st.error(e)
