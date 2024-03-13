@@ -28,6 +28,14 @@ gcp_model_vision = ChatGoogleGenerativeAI(temperature=0, model="gemini-pro-visio
 gcp_model_txt = ChatGoogleGenerativeAI(temperature=0, model="gemini-pro", google_api_key=GOOGLE_API_KEY)
 
 
+def parse_null_list(value):
+    if pd.isnull(value):
+        parse = '[]'
+        return parse
+    else:
+        return value
+
+
 def search_google_trends(query, data_type='RELATED_TOPICS', geo='CL'):
     assert data_type in ['RELATED_TOPICS', 'RELATED_QUERIES', 'GEO_MAP_0', 'GEO_MAP', 'TIMESERIES'], 'data_type not supported'
     params = {

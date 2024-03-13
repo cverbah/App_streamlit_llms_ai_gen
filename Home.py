@@ -1,9 +1,9 @@
 import streamlit as st
 import pandas as pd
 import os
-from utils import format_pricing_table, format_compete_table
+from utils import format_pricing_table, format_compete_table, parse_null_list
 from streamlit_extras.app_logo import add_logo
-
+from ast import literal_eval
 
 st.set_page_config(
     page_title="App LLMs Testing",
@@ -29,6 +29,14 @@ try:
         if 'df' not in st.session_state:
             df = pd.read_csv(temp_location, index_col=0)
             #df = format_compete_table(df)   # deactivated for now
+
+            # parse data
+            df['marcas_en_promo'] = df['marcas_en_promo'].apply(lambda row: parse_null_list(row))
+            df['marcas_en_promo'] = df['marcas_en_promo'].apply(literal_eval)
+            df['publico_objetivo'] = df['publico_objetivo'].apply(lambda row: parse_null_list(row))
+            df['publico_objetivo'] = df['publico_objetivo'].apply(literal_eval)
+            df['categorias_en_promo'] = df['categorias_en_promo'].apply(lambda row: parse_null_list(row))
+            df['categorias_en_promo'] = df['categorias_en_promo'].apply(literal_eval)
 
             # Save the data to session state
             st.session_state.df = df
