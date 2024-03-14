@@ -37,8 +37,9 @@ try:
             df['publico_objetivo'] = df['publico_objetivo'].apply(literal_eval)
             df['categorias_en_promo'] = df['categorias_en_promo'].apply(lambda row: parse_null_list(row))
             df['categorias_en_promo'] = df['categorias_en_promo'].apply(literal_eval)
+            df['productos_en_oferta'] = df['productos_en_oferta'].apply(lambda row: parse_null_list(row))
             df['datetime_checked'] = pd.to_datetime(df['datetime_checked'])
-
+            df['date_checked'] = df['datetime_checked'].dt.date
             # Save the data to session state
             st.session_state.df = df
 
