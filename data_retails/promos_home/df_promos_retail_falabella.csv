@@ -1,27 +1,25 @@
 ,nombre_promocion,tipo_oferta,posicion,url_img,datetime_checked
-0,venta especial zapatillas,ofertas_principales,1,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt8ccc6082fdbb7f1c/65f210015caa4b7a6260a624/Zapatillas-HH2-dk-140324-gmc.jpg,2024-03-14 11:08:45.352407
-1,venta especial hombre mujer y nino,ofertas_principales,2,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt1ef36bdf9debfbc1/65f2f8b673d0bc2013f3b13f/HMN-hh1-dk-ne-1403-ne.jpg,2024-03-14 11:08:45.352407
-2,belleza f,ofertas_principales,3,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/bltbe946c37d582ef6d/65eb567f6a79de02ec143de0/HH2-dk-BellezaF-110424-PS.jpg,2024-03-14 11:08:45.352407
-3,apple week,ofertas_principales,4,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt6f9ebd51824126e5/65ef736c54369a1b306929b9/HH2-dk-appleweek-120324-MB.jpg,2024-03-14 11:08:45.352407
-4,computacion,ofertas_principales,5,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt9f50d51e8213a391/65f1fdc6a1e815aefad5a8d3/HH6-dk-computacion-1303-mb.jpg,2024-03-14 11:08:45.352407
-5,rosen week,ofertas_principales,6,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt307bb12896775045/65f1ead573d0bc98b6f3ab4e/Camas-Rosen-HH5-dk-130324-NM.jpg,2024-03-14 11:08:45.352407
-6,armani code,ofertas_principales,7,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blta3990d7cd4ea34c6/65eb684d2850974f0c44e798/HH7-dk-armani-110324-ne.jpg,2024-03-14 11:08:45.352407
-7,fitness,ofertas_secundarias,1,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt90dd05ae6c745041/65f21743d32676c9cf7e49d9/BH-01%E2%80%93perfumes-140324-gmc.jpg,2024-03-14 11:08:45.352407
-8,carteras,ofertas_secundarias,2,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt0b150b0c76322678/65f21743f2a292323abf4040/BH-02-carteras-1403-ne.jpg,2024-03-14 11:08:45.352407
-9,dermo,ofertas_secundarias,3,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt5e6167e87ec4e968/65f2f7d6f50f9a69007bfe65/BH-03%E2%80%93belleza-1403-ne.jpg,2024-03-14 11:08:45.352407
-10,poleras mejores marcas,ofertas_secundarias,4,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt0cfa387a85e31aa5/65f217045caa4b973260a64b/BH-04-vestuario-120324-IR.jpg,2024-03-14 11:08:45.352407
-11,nueva temporada,grid_ofertas,1,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/bltc9a2bf7585d550c0/65f2fc15f2a292220ebf4452/MC1-dk-zapatillas-140324-IR.jpg,2024-03-14 11:08:45.352407
-12,super serum 30% descuento,grid_ofertas,2,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt921b3cc458e4554d/65eef2fda93acbc37930f41e/MC2-DK-superSerum-110324-ne.jpg,2024-03-14 11:08:45.352407
-13,vestuario deportivo,grid_ofertas,3,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/bltde09c17e1d3af3b8/65f19af3f4a4cff8a414d47c/MC3-dk-vestuariodeportivo-1203-pb.jpg,2024-03-14 11:08:45.352407
-14,especial desayuno,grid_ofertas,4,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/bltb4e61cab2d5ae9cd/65eb531ac26d9179555393bb/MC4-dk-desayunos-1103-pb.png,2024-03-14 11:08:45.352407
-15,linea blanca,grid_ofertas,5,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt2c0674f17b6a401b/65f0c1fdba94f04aab7cd652/MC5-dk-LineaBlanca-1103-mb_%E2%80%93_1.jpg,2024-03-14 11:08:45.352407
-16,lg week,grid_ofertas,6,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt98127fa3a0a8b05b/65eb6954a99186c39ae7bc13/MC6-dk-lg-1103-pb.png,2024-03-14 11:08:45.352407
-17,home office,grid_ofertas,7,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/bltd384bc7b0bf831f4/65f30099edb2c7669c370d31/MC7-dk-HomeOffice-130324-mb.jpg,2024-03-14 11:08:45.352407
-18,ropa de cama,grid_ofertas,8,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/bltd61f2b0e9536aa35/65f074aee55fcb7da1233841/MC8-dk-Ropadecama-120324-PG.jpg,2024-03-14 11:08:45.352407
-19,pandora,grid_ofertas,9,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/bltdac92e8ee23446a0/65f2faa7d4e0c0fd9e2919d6/MC9-dk-pandora-140324-IR_%E2%80%93_1.jpg,2024-03-14 11:08:45.352407
-20,infantil,grid_ofertas,10,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt1b575134a1e967d7/65f198968330b3b1d602d88b/MC11-infantil-dk-130324-IR.jpg,2024-03-14 11:08:45.352407
-21,fitness,grid_ofertas,11,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/bltad1e0e774201e177/65f1a29f0780b92a2561bc53/Fitness-MC11-dk-130324-NM.jpg,2024-03-14 11:08:45.352407
-22,bicicleta,grid_ofertas,12,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blta0bae7d3d3227173/65f054a9f4a4cfe99014cd19/MC12-dk-bici-1203-pb.png,2024-03-14 11:08:45.352407
-23,desktop-category-image,lo_ultimo,1,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/bltcd7077fe90ca03f6/65eb6a5f4fcc270568935bad/01-LoUltimo-dk-Tops-110304-PS.jpg,2024-03-14 11:08:45.352407
-24,desktop-category-image,lo_ultimo,2,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/bltc6c9a2a8e3a2e23d/65eb6a5ff6198cbc8d06d173/02-LoUltimo-dk-Sastreros-110324-PS.jpg,2024-03-14 11:08:45.352407
-25,desktop-category-image,lo_ultimo,3,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/bltd91129b40bcbe694/65eb6fab8221d9210056a7c7/03-LoUltimo-dk-cat-110324-PS.jpg,2024-03-14 11:08:45.352407
+0,telefonia,ofertas_principales,1,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/bltb5f8aa61c1cae2a8/65f04ea7039fddccab335e7f/HH1-dk-telefonia-120424-mb.jpg,2024-03-15 09:44:19.581795
+1,zapatillas,ofertas_principales,2,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/bltf9833caadce7924f/65f42ec37a44b021c0549491/Zapatillas-HH2-dk-150324-gmc.jpg,2024-03-15 09:44:19.581795
+2,computacion,ofertas_principales,3,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt7d94e44be9f56f52/65f43fdfd9576053fe505bc4/HH6-dk-computacion-1303-mb.jpg,2024-03-15 09:44:19.581795
+3,lg week,ofertas_principales,4,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt5b3d19acf46fca7b/65f43d625fa1c614154bd544/LG-Week-HH4-dk-140324-NM-v2.jpg,2024-03-15 09:44:19.581795
+4,armani code,ofertas_principales,5,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blta3990d7cd4ea34c6/65eb684d2850974f0c44e798/HH7-dk-armani-110324-ne.jpg,2024-03-15 09:44:19.581795
+5,linea blanca,ofertas_secundarias,1,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt9c8fdca608d7e7a9/65f37d9839973e584b6e8207/BH-01-lineablanca-150324-pb.jpg,2024-03-15 09:44:19.581795
+6,muebles,ofertas_secundarias,2,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt8dfa955c7c53d170/65f37d980c744d58177c07d7/BH-02-muebles-1503-pb.jpg,2024-03-15 09:44:19.581795
+7,dormitorio,ofertas_secundarias,3,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt78c23ed3d7863614/65f37d987a44b084c4549214/BH-03-colchones-1503-pb.jpg,2024-03-15 09:44:19.581795
+8,juegos exterior,ofertas_secundarias,4,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt66abf52a85f5b3d8/65f37d9896251b81e771f1cf/BH-04-juegosde-1503-pb.jpg,2024-03-15 09:44:19.581795
+9,nueva temporada,grid_ofertas,1,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/bltc9a2bf7585d550c0/65f2fc15f2a292220ebf4452/MC1-dk-zapatillas-140324-IR.jpg,2024-03-15 09:44:19.581795
+10,super serum 30% descuento,grid_ofertas,2,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt921b3cc458e4554d/65eef2fda93acbc37930f41e/MC2-DK-superSerum-110324-ne.jpg,2024-03-15 09:44:19.581795
+11,vestuario deportivo,grid_ofertas,3,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/bltde09c17e1d3af3b8/65f19af3f4a4cff8a414d47c/MC3-dk-vestuariodeportivo-1203-pb.jpg,2024-03-15 09:44:19.581795
+12,especial desayuno,grid_ofertas,4,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/bltb4e61cab2d5ae9cd/65eb531ac26d9179555393bb/MC4-dk-desayunos-1103-pb.png,2024-03-15 09:44:19.581795
+13,linea blanca,grid_ofertas,5,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt8959e93c46d287fe/65f365208330b3f72802e4eb/MC5-dk-LineaBlanca-1103-mb-v2.jpg,2024-03-15 09:44:19.581795
+14,smartwatch,grid_ofertas,6,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/bltf2cddadb1b787410/65f34e2996251b8f1271f028/MC6-dk-smartwatch-1403-pb.jpg,2024-03-15 09:44:19.581795
+15,comedores,grid_ofertas,7,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt5bf68394aaa25d59/65f43914f50f9a4ba97c062f/MC7-dk-cat-COMEDOR-150324-MB.jpg,2024-03-15 09:44:19.581795
+16,ropa de cama,grid_ofertas,8,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/bltd61f2b0e9536aa35/65f074aee55fcb7da1233841/MC8-dk-Ropadecama-120324-PG.jpg,2024-03-15 09:44:19.581795
+17,pandora,grid_ofertas,9,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/bltdac92e8ee23446a0/65f2faa7d4e0c0fd9e2919d6/MC9-dk-pandora-140324-IR_%E2%80%93_1.jpg,2024-03-15 09:44:19.581795
+18,infantil,grid_ofertas,10,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt1b575134a1e967d7/65f198968330b3b1d602d88b/MC11-infantil-dk-130324-IR.jpg,2024-03-15 09:44:19.581795
+19,camping,grid_ofertas,11,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt377f2ab0a1a25016/65f3439df4a4cf041514df5f/Camping-MC4-2-dk-140324-NM.jpg,2024-03-15 09:44:19.581795
+20,bicicleta,grid_ofertas,12,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blta0bae7d3d3227173/65f054a9f4a4cfe99014cd19/MC12-dk-bici-1203-pb.png,2024-03-15 09:44:19.581795
+21,desktop-category-image,lo_ultimo,1,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/bltcd7077fe90ca03f6/65eb6a5f4fcc270568935bad/01-LoUltimo-dk-Tops-110304-PS.jpg,2024-03-15 09:44:19.581795
+22,desktop-category-image,lo_ultimo,2,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/blt3532742f22719314/65e925ff63ec425f9b5d8cdb/02-LoUltimo-dk-Faldas-060324-PG.jpg,2024-03-15 09:44:19.581795
+23,desktop-category-image,lo_ultimo,3,https://images.falabella.com/v3/assets/blt7c5c2f2f888a7cc3/bltd91129b40bcbe694/65eb6fab8221d9210056a7c7/03-LoUltimo-dk-cat-110324-PS.jpg,2024-03-15 09:44:19.581795
