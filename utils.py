@@ -14,6 +14,7 @@ import base64
 import vertexai
 from vertexai.generative_models import GenerativeModel, Part, FinishReason
 import vertexai.preview.generative_models as generative_models
+import matplotlib.pyplot as plt
 import io
 import contextlib
 
@@ -43,6 +44,21 @@ def parse_null_list(value):
         return parse
     else:
         return value
+
+
+def execute_code(snippet, df: pd.DataFrame):
+    # Strip the code snippet
+    code = snippet.strip().strip('```python').strip('```').strip()
+    local_vars = {'df': df, 'plt': plt}
+    # Redirect standard output to capture `print()` statements
+    output_capture = io.StringIO()
+    try:
+        with contextlib.redirect_stdout(output_capture):
+            exec(code, globals(), local_vars)
+        output = output_capture.getvalue()
+        return local_vars, output
+    except Exception as e:
+        return {}, f"Error: {e}"
 
 def analyze_table_gemini(query: str, df: pd.DataFrame):
     generation_config = {

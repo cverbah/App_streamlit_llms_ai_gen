@@ -12,25 +12,6 @@ import io
 import contextlib
 
 
-def execute_code(snippet, df: pd.DataFrame):
-    # Strip the code snippet
-    code = snippet.strip().strip('```python').strip('```').strip()
-
-    # Define a local scope dictionary to pass to exec()
-    local_vars = {'df': df, 'plt': plt}
-
-    # Redirect standard output to capture `print()` statements
-    output_capture = io.StringIO()
-    try:
-        with contextlib.redirect_stdout(output_capture):
-            exec(code, globals(), local_vars)
-        # Get the captured output
-        output = output_capture.getvalue()
-        return local_vars, output
-    except Exception as e:
-        # Handle and display any errors
-        return {}, f"Error: {e}"
-
 st.set_page_config(
     page_title="Data Analyst Testing",
     page_icon=":robot_face:",
@@ -48,7 +29,6 @@ except Exception as e:
     st.error(f'Error: {e}')
 
 user_input = st.text_input("Que desea saber de la tabla?")
-#st_callback = StreamlitCallbackHandler(st.container())
 if user_input:
     with st.spinner('Pensando...'):
         try:
