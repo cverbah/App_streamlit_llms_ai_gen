@@ -1,0 +1,80 @@
+import streamlit as st
+from utils import *
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
+import seaborn as sns
+matplotlib.use('Agg')
+#matplotlib.use('tkagg')
+from streamlit_extras.app_logo import add_logo
+import io
+import contextlib
+
+
+def execute_code(snippet, df: pd.DataFrame):
+    # Strip the code snippet
+    code = snippet.strip().strip('```python').strip('```').strip()
+
+    # Define a local scope dictionary to pass to exec()
+    local_vars = {'df': df, 'plt': plt}
+
+    # Redirect standard output to capture `print()` statements
+    output_capture = io.StringIO()
+    try:
+        with contextlib.redirect_stdout(output_capture):
+            exec(code, globals(), local_vars)
+        # Get the captured output
+        output = output_capture.getvalue()
+        return local_vars, output
+    except Exception as e:
+        # Handle and display any errors
+        return {}, f"Error: {e}"
+
+st.set_page_config(
+    page_title="Data Analyst Testing",
+    page_icon=":robot_face:",
+    layout="wide",
+)
+
+add_logo("https://www.python.org/static/community_logos/python-powered-w-100x40.png", height=0 )
+st.title(':robot_face: Analista de datos')
+# Display DataFrame
+st.subheader("DataFrame cargado:")
+try:
+    df = st.session_state.df
+    st.dataframe(df)
+except Exception as e:
+    st.error(f'Error: {e}')
+
+user_input = st.text_input("Que desea saber de la tabla?")
+#st_callback = StreamlitCallbackHandler(st.container())
+if user_input:
+    with st.spinner('Pensando...'):
+        try:
+            response = analyze_table_gemini(query=user_input, df=df)
+            local_vars, output = execute_code(response, df=df)
+            #st.write(local_vars)
+            st.write('code snippet test:')
+            st.text(response)
+            st.write('output test:')
+            if 'plt.' in response:
+                try:
+                    st.write("Generated Plot:")
+                    fig = local_vars['plt'].gcf()
+                    #fig.set_size_inches(5, 5)
+                    st.pyplot(fig)
+                except Exception as e:
+                    try:
+                        st.dataframe(local_vars['df_temp'])
+                    except Exception as e:
+                        st.text('Error al ejecutar la query. Intente de nuevo modificando su consulta.')
+
+            else:
+                try:
+                    st.dataframe(local_vars['df_temp'])
+                except Exception as e:
+                    st.text(output)
+
+        except Exception as e:
+            st.text('Error al ejecutar la query. Intente de nuevo modificando su consulta.')

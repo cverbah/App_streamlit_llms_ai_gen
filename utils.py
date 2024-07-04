@@ -10,7 +10,12 @@ from langchain_core.messages import HumanMessage
 from PIL import Image
 from serpapi import GoogleSearch
 import json
-
+import base64
+import vertexai
+from vertexai.generative_models import GenerativeModel, Part, FinishReason
+import vertexai.preview.generative_models as generative_models
+import io
+import contextlib
 
 # env
 load_dotenv()
@@ -18,7 +23,11 @@ OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'key.json'
 GOOGLE_API_KEY = os.environ['GCP_API_KEY']
 SERPAPI_API_KEY = os.environ['SERPAPI_API_KEY']  # https://serpapi.com/google-trends-api
+PROJECT_ID = 'automatch-309218'
+LOCATION = "us-central1"
 
+
+vertexai.init(project=PROJECT_ID, location=LOCATION)
 # OpenAI Models
 openai_model_3 = ChatOpenAI(temperature=0, model_name='gpt-3.5-turbo', openai_api_key=OPENAI_API_KEY)
 openai_model_4 = ChatOpenAI(temperature=0, model_name='gpt-4-turbo-preview', openai_api_key=OPENAI_API_KEY)
@@ -35,6 +44,51 @@ def parse_null_list(value):
     else:
         return value
 
+def analyze_table_gemini(query: str, df: pd.DataFrame):
+    generation_config = {
+        "max_output_tokens": 8192,  # max
+        "temperature": 1,
+        "top_p": 0.95,
+    }
+
+    safety_settings = {
+        generative_models.HarmCategory.HARM_CATEGORY_HATE_SPEECH: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+        generative_models.HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+        generative_models.HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+        generative_models.HarmCategory.HARM_CATEGORY_HARASSMENT: generative_models.HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE,
+    }
+
+    df_parsed = df.to_string(index=False)
+    model = GenerativeModel(
+        model_name="gemini-1.5-pro-001",
+        system_instruction=[
+            "Eres un asistente de IA experto en análisis de datos y programación en el lenguaje python.",
+            f"Debes responder preguntas relacionadas a la siguiente tabla de datos: {df_parsed}.",
+            "El usuario te proporcionará una consulta en lenguaje natural y debes responderla entregando un código en python.",
+            "Usa el nombre 'df' para la tabla que contenga la data. No vuelvas a generar la data en el código.",
+            f"Si vas a filtrar columnas de la tabla, siempre usa las siguientes columnas: {df.columns}."
+            "Piensa paso a paso, verificando que los formatos y tipos de datos sean los correctos y siempre importa las librerias necesarias en el codigo.",
+            "No imprimas comentarios en el código. (no uses #) y utiliza el comando print para imprimir la tabla con los datos de la consulta.",
+            "En el caso que tengas que imprimir una tabla con la respuesta final, llama a esta tabla: df_temp en el código generado."
+            "En el caso de que tengas que graficar, ocupa un fig_size fijo de (5,5) y siempre usa tight_layout.",
+            "Si no respondiste generando código en python, siempre respondes en español",
+            ])
+
+    prompt = f"""
+             User input: {query}
+             Answer:
+            """
+
+    contents = [prompt]
+
+    responses = model.generate_content(contents,
+                                       generation_config=generation_config,
+                                       safety_settings=safety_settings,
+                                       stream=False)  # Si True -> la parte de text tiene que ser iterada
+
+    # for response in responses:
+    #    print(response.text, end="")
+    return responses.text
 
 def search_google_trends(query, data_type='RELATED_TOPICS', geo='CL'):
     assert data_type in ['RELATED_TOPICS', 'RELATED_QUERIES', 'GEO_MAP_0', 'GEO_MAP', 'TIMESERIES'], 'data_type not supported'
@@ -158,7 +212,7 @@ def analyze_promo_v2(image_path, format=True, model=gcp_model_vision):
     Paso 2: Identifica cuantos productos con precios con descuentos hay en la imagen, mostrando el precio sin y con descuento.
             Si no sale el precio de cada producto de forma explícita, no guardes la información.
     Paso 3: Extra la información de cada producto siempre y cuando tenga descuentos y agregala al archivo json siguiendo la siguiente estructura:\
-    ['productos_en_oferta': [{'nombre_del_producto': nombre completo del producto,
+    ['productos_en_oferta': [{'nombre_del_producto': nombre completo del producto detectado,
                               'precio_normal': precio normal,
                               'precio_oferta': precio oferta,
                               'descuento': descuento formateado con porcentaje]}]
