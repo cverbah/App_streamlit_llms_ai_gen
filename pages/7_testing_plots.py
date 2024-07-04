@@ -5,29 +5,7 @@ import contextlib
 import matplotlib.pyplot as plt
 
 
-# Function to execute the code snippet
-def execute_code(snippet, df: pd.DataFrame):
-    # Strip the code snippet
-    code = snippet.strip().strip('```python').strip('```').strip()
-
-    # Define a local scope dictionary to pass to exec()
-    local_vars = {'df': df, 'plt': plt}
-
-    # Redirect standard output to capture `print()` statements
-    output_capture = io.StringIO()
-    try:
-        with contextlib.redirect_stdout(output_capture):
-            exec(code, globals(), local_vars)
-        # Get the captured output
-        output = output_capture.getvalue()
-        return local_vars, output
-    except Exception as e:
-        # Handle and display any errors
-        return {}, f"Error: {e}"
-
-
-# Streamlit App
-st.title("Dynamic Execution and Plotting of Python Code Snippet")
+st.title("Test Plots Python Code Snippet")
 
 # Sample DataFrame for demonstration
 data = {
@@ -36,8 +14,6 @@ data = {
     'best for pets precio final': [10.99, 15.49, 8.99, 20.00, 13.25, 18.75]
 }
 df = pd.DataFrame(data)
-
-# Display the sample DataFrame
 st.write("Sample DataFrame:")
 st.dataframe(df)
 
@@ -56,6 +32,20 @@ plt.title('Top 5 Productos para Gatos')
 plt.grid(True)
 plt.show()
 ```""")
+
+def execute_code(snippet, df: pd.DataFrame):
+    # Strip the code snippet
+    code = snippet.strip().strip('```python').strip('```').strip()
+    local_vars = {'df': df, 'plt': plt}
+    # Redirect standard output to capture `print()` statements
+    output_capture = io.StringIO()
+    try:
+        with contextlib.redirect_stdout(output_capture):
+            exec(code, globals(), local_vars)
+        output = output_capture.getvalue()
+        return local_vars, output
+    except Exception as e:
+        return {}, f"Error: {e}"
 
 # Button to execute the code
 if st.button("Execute Code"):
