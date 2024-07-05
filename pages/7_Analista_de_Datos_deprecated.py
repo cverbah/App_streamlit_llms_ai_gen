@@ -15,7 +15,7 @@ st.set_page_config(
 )
 
 add_logo("https://www.python.org/static/community_logos/python-powered-w-100x40.png", height=1)
-st.title(':robot_face: Analista de datos')
+st.title(':robot_face: Analista de datos - Versión vieja')
 # Display DataFrame
 st.subheader("DataFrame cargado:")
 try:

@@ -32,6 +32,7 @@ try:
                 df = pd.read_csv(temp_location, index_col=0)
                 #df = format_compete_table(df)   # deactivated for now
 
+                # por ahora este preprocessing para una tabla de prueba que estoy usando (ofertas_test.csv)
                 # parse data
                 df['marcas_en_promo'] = df['marcas_en_promo'].apply(lambda row: parse_null_list(row))
                 df['marcas_en_promo'] = df['marcas_en_promo'].apply(literal_eval)
@@ -51,6 +52,7 @@ try:
 
             if uploaded_file.name.endswith(('.xls', '.xlsx')):
                 df = pd.read_excel(uploaded_file, engine='openpyxl')
+                # por ahora este preprocessing para una tabla de prueba que estoy usando (Purina Specialty - Catálogo de sustitutos.xlsx)
                 df = df.fillna(0)
                 df = df[df.SKU != 0]
                 df.columns = df.columns.str.lower()
