@@ -1,6 +1,12 @@
 # :construction: Streamlit App :construction:
 Project powered mainly by langchain :bird: , streamlit, selenium, beautifulsoup and pandas<br>
-- The main idea of this project is to extract relevant data from promotions/banners from retails home pages using multimodal models
+- The main idea of this project is to extract relevant data from promotions/banners from retails home pages using multimodal models:
+  - Websites Scrapping
+  - Data extraction from images using multimodal models
+  - Dashboards
+  - AI Assistants built with LLMs models from: Google, OpenAI
+  - Tables and Plot generation from dataframes using LLM models
+    
 - under construction ... :construction:
 
 For running the app: <br>
