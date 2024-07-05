@@ -6,7 +6,7 @@ import time
 from utils import search_google_trends #import SERPAPI_API_KEY,
 from streamlit_extras.app_logo import add_logo
 
-add_logo("https://www.python.org/static/community_logos/python-powered-w-100x40.png", height=1)
+#add_logo("https://www.python.org/static/community_logos/python-powered-w-100x40.png", height=1)
 st.title('Analista de Google Trends')
 
 # Input keyword from user

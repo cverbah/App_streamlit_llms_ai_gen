@@ -6,12 +6,13 @@ from utils import format_pricing_table, format_compete_table, parse_null_list
 from streamlit_extras.app_logo import add_logo
 from ast import literal_eval
 
+
 st.set_page_config(
     page_title="App LLMs Testing",
     page_icon=":robot_face:",
     layout="wide",
 )
-add_logo("https://www.python.org/static/community_logos/python-powered-w-100x40.png", height=0)
+#add_logo("https://www.python.org/static/community_logos/python-powered-w-100x40.png", height=0)
 st.title(':wrench: Dashboard & LLMs Tests :wrench:')
 
 uploaded_file = st.file_uploader("Seleccione un archivo CSV o Excel para analizar", type=["xlsx", "xls", "csv"])
