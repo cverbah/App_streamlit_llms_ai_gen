@@ -54,8 +54,13 @@ try:
             if uploaded_file.name.endswith(('.xls', '.xlsx')):
                 df = pd.read_excel(uploaded_file, engine='openpyxl')
                 # por ahora este preprocessing para una tabla de prueba que estoy usando (Purina Specialty - Catálogo de sustitutos.xlsx)
-                df = df.fillna(0)
-                df = df[df.SKU != 0]
+                # columnas con precios
+                precios_tienda = df.iloc[:, 4:]
+                for col in precios_tienda.columns:
+                    df[col] = pd.to_numeric(df[col], errors='coerce')
+
+                #df = df.fillna(0)
+                df = df[~df.SKU.isnull()]
                 df.columns = df.columns.str.lower()
                 # Save the data to session state
                 st.session_state.df = df
