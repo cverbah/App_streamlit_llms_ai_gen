@@ -30,14 +30,21 @@ except Exception as e:
 
 user_input = st.text_input("Que desea saber de la tabla?")
 if user_input:
-    with st.spinner('Pensando...'):
+    col1, col2= st.columns(2, gap='large')
+    with col1:
+        with st.spinner('Pensando...'):
+            try:
+                response = analyze_table_gemini(query=user_input, df=df)
+                local_vars, output = execute_code(response, df=df)
+                #st.write(local_vars)
+                st.write('Snippet en Python:')
+                st.text(response)
+            except Exception as e:
+                st.text('Error al ejecutar la query. Intente de nuevo modificando su consulta.')
+
+    with col2:
         try:
-            response = analyze_table_gemini(query=user_input, df=df)
-            local_vars, output = execute_code(response, df=df)
-            #st.write(local_vars)
-            st.write('code snippet test:')
-            st.text(response)
-            st.write('output test:')
+            st.write('Respuesta generada por IA:')
             if 'plt.' in response:
                 try:
                     st.write("Generated Plot:")
