@@ -26,7 +26,7 @@ try:
 
 
 except Exception as e:
-    st.error(e)
+    st.error('No se ha cargado archivo con promociones')
 
 if 'tipo_oferta' in df.columns.tolist():
     with st.sidebar:
